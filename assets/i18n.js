@@ -507,6 +507,7 @@
     "mix": ["mešenje", "замес"],
     "autolyse": ["autoliza", "автолиз"],
     "all folds": ["sva presavijanja", "все складки"],
+    "full cycle": ["ceo ciklus", "полный цикл"],
     "fold 3": ["3. presavijanje", "3-я складка"],
     "fold 4": ["4. presavijanje", "4-я складка"],
 
