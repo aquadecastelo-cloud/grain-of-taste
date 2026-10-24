@@ -243,3 +243,8 @@ table.t th{overflow-wrap:normal;vertical-align:bottom}
 .kit-check .or{font-family:var(--serif);font-style:italic;font-size:16px;color:var(--muted)}
 .kit-check .tag{margin-left:auto}
 .kit-check input:checked~.what{text-decoration:line-through;text-decoration-thickness:2px}
+
+/* sections not released on prod — marked only on the mirror / local */
+a.unreleased{outline:2px dashed var(--muted);outline-offset:3px}
+nav.main a.unreleased::after{content:" ·dev";color:var(--red)}
+.cover-card.unreleased::before{content:"not on prod";position:absolute;top:14px;right:14px;font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;background:var(--paper);color:var(--red);padding:3px 8px;border:2px dashed var(--red)}
