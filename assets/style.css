@@ -282,3 +282,18 @@ table.t th{overflow-wrap:normal;vertical-align:bottom}
 a.unreleased{outline:2px dashed var(--muted);outline-offset:3px}
 nav.main a.unreleased::after{content:" ·dev";color:var(--red)}
 .cover-card.unreleased::before{content:"not on prod";position:absolute;top:14px;right:14px;font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;background:var(--paper);color:var(--red);padding:3px 8px;border:2px dashed var(--red)}
+
+/* about: bakery list with a small heading per item */
+.bakery-list li strong{display:block;font-family:var(--hand);font-weight:700;font-size:30px;color:var(--accent);margin-bottom:6px;letter-spacing:0}
+.bakery-list li{font-size:15px;line-height:1.55}
+
+/* plates keep their own colours on dark pages (blue / plum) */
+.blue .plate .caps,.plum .plate .caps{color:var(--muted);opacity:1}
+.blue .plate.accent .caps,.plum .plate.accent .caps{color:var(--paper);opacity:.85}
+.blue .plate .num,.plum .plate .num{color:var(--ink)}
+.blue .plate.accent .num,.plum .plate.accent .num{color:var(--paper)}
+/* readability on blue / orange: full-strength labels */
+.blue .caps,.plum .caps,.blue nav.main a,.plum nav.main a,.blue .lang a,.blue .site-header .brand span,.plum .site-header .brand span,.cover-card.blue .caps,.cover-card.plum .caps{opacity:1}
+.blue .plate.accent .caps,.plum .plate.accent .caps,.plate.accent .caps{opacity:1}
+.blue .list li b,.plum .list li b{opacity:.9}
+.blue .post .sub,.plum .post .sub{opacity:1}
