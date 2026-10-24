@@ -163,3 +163,23 @@
   bar.textContent = 'DEV · mirror · not prod';
   document.body.insertBefore(bar, document.body.firstChild);
 })();
+
+/* ---------- PDF: watermark layer + download buttons ----------
+   The watermark is printed on every page of any PDF or printout of the site.
+   Download buttons: <a class="btn pdf" data-pdf="wheat-sourdough" href="../pdf/wheat-sourdough-en.pdf">
+   pick the file in the reader's current language (en / sr / ru). */
+(function () {
+  var wm = document.createElement('div');
+  wm.className = 'watermark'; wm.setAttribute('aria-hidden', 'true');
+  var inner = '';
+  for (var i = 0; i < 160; i++) inner += '<span>@grain_of_taste</span>';
+  wm.innerHTML = '<div>' + inner + '</div>';
+  document.body.appendChild(wm);
+  document.querySelectorAll('a[data-pdf]').forEach(function (a) {
+    a.addEventListener('click', function () {
+      var lang = (window.gotI18n && window.gotI18n.current()) || 'en';
+      var base = a.getAttribute('href').replace(/-(en|sr|ru)\.pdf$/, '');
+      a.setAttribute('href', base + '-' + lang + '.pdf');
+    });
+  });
+})();

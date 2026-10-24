@@ -243,3 +243,38 @@ table.t th{overflow-wrap:normal;vertical-align:bottom}
 .kit-check .or{font-family:var(--serif);font-style:italic;font-size:16px;color:var(--muted)}
 .kit-check .tag{margin-left:auto}
 .kit-check input:checked~.what{text-decoration:line-through;text-decoration-thickness:2px}
+
+/* ---------- PDF download button ---------- */
+.btn.pdf::before{content:"↓ "}
+
+/* ---------- watermark (only in print / PDF) ---------- */
+.watermark{display:none}
+.pdf-only{display:none}
+
+@media print{
+  @page{size:A4;margin:16mm 0 16mm 0}
+  html,body{background:var(--paper)!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  body{--bg:var(--paper)}
+  .wrap{padding:0 15mm}
+  .site-header,.site-footer,.lang,.dev-bar,.no-pdf,.steps,.scaler,.step .side,.btn,.kit-jump,.calc{display:none!important}
+  section,.step{margin:0 0 10mm;padding-top:0}
+  .step{display:block;padding:8mm 0 0;break-inside:avoid}
+  .step .head .num{font-size:110px}
+  .step .head .hand{font-size:44px}
+  .plates{break-inside:avoid}
+  .plate{box-shadow:none;border:2px solid var(--ink)}
+  .plate.accent{border-color:var(--red)}
+  .polaroid{box-shadow:0 0 0 1px rgba(43,42,38,.25)}
+  h2,h3,.page-head{break-after:avoid}
+  .list li,table.t tr{break-inside:avoid}
+  .hero{padding:0;break-after:page}
+  .hero .polaroid{width:380px}
+  .pdf-only{display:block}
+  .pdf-video{margin-top:6mm;font-family:var(--mono);font-size:12px;letter-spacing:.08em;color:var(--muted)}
+  .pdf-video b{color:var(--red);font-weight:500}
+  a{text-decoration:none!important}
+  .watermark{display:block;position:fixed;inset:-40mm;z-index:9999;pointer-events:none;overflow:hidden}
+  .watermark div{position:absolute;inset:0;display:flex;flex-wrap:wrap;align-content:flex-start;gap:26mm 22mm;transform:rotate(-30deg);transform-origin:center}
+  .watermark span{font-family:var(--mono);font-weight:500;font-size:15px;letter-spacing:.18em;text-transform:uppercase;color:rgba(43,42,38,.085);white-space:nowrap}
+  .watermark span:nth-child(2n){color:rgba(200,66,46,.10)}
+}
