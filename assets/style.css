@@ -340,3 +340,4 @@ nav.main a.unreleased::after{content:" ·dev";color:var(--red)}
 .calc-explain .list li strong{display:block;margin-bottom:4px}
 .blue .calc-explain .list li b{color:var(--accent)}
 .blue .calc-explain .list li strong{color:var(--fg)}
+.blue .calc-explain .list li b{opacity:1}
