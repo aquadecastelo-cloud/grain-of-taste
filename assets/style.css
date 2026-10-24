@@ -297,3 +297,11 @@ nav.main a.unreleased::after{content:" ·dev";color:var(--red)}
 .blue .plate.accent .caps,.plum .plate.accent .caps,.plate.accent .caps{opacity:1}
 .blue .list li b,.plum .list li b{opacity:.9}
 .blue .post .sub,.plum .post .sub{opacity:1}
+
+/* calculator: segmented toggle fills its whole half (Safari) */
+.seg label{display:flex}
+.seg label span,.seg input:checked+span{display:block;flex:1;margin:0;padding:10px 14px;text-align:center}
+.stock-note b{font-family:var(--mono);font-style:normal;font-weight:500;color:var(--fg)}
+.stock-note{margin:14px 0 8px}
+
+.field[hidden]{display:none}

@@ -90,7 +90,9 @@
           <label><input type="radio" name="mode-recipe" value="dough"><span>dough I want</span></label>
         </div>
       </div>
-      <div class="field"><label class="caps" for="amt">grams</label><input id="amt" name="amount" type="number" min="50" step="10" value="500" inputmode="numeric"></div>
+      <div class="field" data-when="dough"><label class="caps" for="r-amt">dough I want, g</label><input id="r-amt" name="amount" type="number" min="50" step="10" value="1150" inputmode="numeric"></div>
+      <div class="field" data-when="flour"><label class="caps" for="r-hw">white bread flour I have, g</label><input id="r-hw" name="have-white" type="number" min="0" step="10" value="500" inputmode="numeric"></div>
+      <div class="field" data-when="flour" data-ww><label class="caps" for="r-hz">whole wheat flour I have, g</label><input id="r-hz" name="have-ww" type="number" min="0" step="10" value="200" inputmode="numeric"></div>
       <div class="field"><label class="caps" for="lv">loaves</label><input id="lv" name="loaves" type="number" min="1" max="12" step="1" value="1" inputmode="numeric"></div>
       <div class="field"><label class="caps" for="st">starter</label><select id="st" name="starter"><option value="stiff">stiff · 43% (lievito madre)</option><option value="liquid">liquid · 100%</option></select></div>
     </div>

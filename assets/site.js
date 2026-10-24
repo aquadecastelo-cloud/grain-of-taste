@@ -101,18 +101,41 @@
       pick.addEventListener('change', syncRecipe);
       syncRecipe();
     }
-        var amount = root.querySelector('[name=amount]');
-    var loaves = root.querySelector('[name=loaves]');
+        var loaves = root.querySelector('[name=loaves]');
     var starterType = root.querySelector('[name=starter]');
     var out = root.querySelector('.calc-out');
+    function val(name) { var el = root.querySelector('[name="' + name + '"]'); return el ? Math.max(0, parseFloat(el.value) || 0) : null; }
     function render() {
       var m = (root.querySelector('[name^=mode]:checked') || {}).value || 'flour';
-      var a = parseFloat(amount.value) || 0;
       var n = loaves ? (parseInt(loaves.value, 10) || 1) : 1;
       var st = starterType ? starterType.value : 'stiff';
-      var F;
-      if (m === 'dough') F = a / (1 + f.hydration / 100 + f.salt / 100);
-      else F = a;
+      var hasStock = !!root.querySelector('[name="have-white"]');
+      /* show the inputs that belong to the chosen mode; hide the whole-wheat stock when the recipe has none */
+      root.querySelectorAll('[data-when]').forEach(function (el) {
+        el.hidden = el.getAttribute('data-when') !== m || (el.hasAttribute('data-ww') && !f.ww);
+      });
+      var F, stockNote = '';
+      if (m === 'dough') {
+        F = (val('amount') || 0) / (1 + f.hydration / 100 + f.salt / 100);
+      } else if (hasStock) {
+        /* flour I have, per flour: the biggest loaf both stocks allow at the recipe's ratio.
+           The starter's own flour is not taken from these stocks — the starter is fed separately. */
+        var W = val('have-white') || 0, Z = f.ww ? (val('have-ww') || 0) : Infinity;
+        var whiteShare = 1 - f.ww / 100 - f.pff / 100, wwShare = f.ww / 100;
+        var byWhite = W / whiteShare, byWw = f.ww ? Z / wwShare : Infinity;
+        F = Math.floor(Math.min(byWhite, byWw));
+        while (F > 0) { var t = compute(f, F, st); if (t.white <= W && t.ww <= Z) break; F--; }
+        var d0 = compute(f, F, st);
+        if (f.ww) {
+          var wwFirst = byWw <= byWhite;
+          var leftG = wwFirst ? W - d0.white : Z - d0.ww;
+          stockNote = '<p class="note stock-note"><span>runs out first:</span> <b>' + (wwFirst ? 'whole wheat flour' : 'white bread flour') + '</b><br>'
+            + '<span>left over:</span> <b>' + r(leftG) + '\u00a0g</b> <span>' + (wwFirst ? 'white bread flour' : 'whole wheat flour') + '</span><br>'
+            + '<span>starter not included — feed it separately.</span></p>';
+        }
+      } else {
+        F = val('amount') || 0;
+      }
       var d = compute(f, F, st);
       var per = n > 1 ? compute(f, F / n, st) : null;
       var rows = [];
@@ -127,6 +150,7 @@
         html += '<tr><td>' + row[0] + '</td><td class="r num">' + r(row[1]) + '\u00a0g</td>' + (per ? '<td class="r num">' + r(row[1] / n) + '\u00a0g</td>' : '') + '</tr>';
       });
       html += '<tr class="total"><td class="caps">total flour · 100%</td><td class="r num">' + r(d.flour) + '\u00a0g</td>' + (per ? '<td class="r num">' + r(d.flour / n) + '\u00a0g</td>' : '') + '</tr></table>';
+      html += stockNote;
       html += '<p class="note">hydration ' + f.hydration + '% · salt ' + f.salt + '%' + (f.ww ? ' · whole wheat ' + f.ww + '%' : '') + (f.pff ? ' · prefermented flour ' + f.pff + '%' : '') + '. Rounded to the gram — your scale does the same.</p>';
       out.innerHTML = html;
       if (window.gotI18n) window.gotI18n.apply(out);

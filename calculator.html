@@ -42,7 +42,9 @@
           <label><input type="radio" name="mode-bread" value="dough"><span>dough I want</span></label>
         </div>
       </div>
-      <div class="field"><label class="caps" for="w-amt">grams</label><input id="w-amt" name="amount" type="number" min="50" step="10" value="500" inputmode="numeric"></div>
+      <div class="field" data-when="dough"><label class="caps" for="w-amt">dough I want, g</label><input id="w-amt" name="amount" type="number" min="50" step="10" value="1150" inputmode="numeric"></div>
+      <div class="field" data-when="flour"><label class="caps" for="w-hw">white bread flour I have, g</label><input id="w-hw" name="have-white" type="number" min="0" step="10" value="500" inputmode="numeric"></div>
+      <div class="field" data-when="flour" data-ww><label class="caps" for="w-hz">whole wheat flour I have, g</label><input id="w-hz" name="have-ww" type="number" min="0" step="10" value="200" inputmode="numeric"></div>
       <div class="field"><label class="caps" for="w-lv">loaves</label><input id="w-lv" name="loaves" type="number" min="1" max="12" step="1" value="1" inputmode="numeric"></div>
       <div class="field"><label class="caps" for="w-st">starter</label><select id="w-st" name="starter"><option value="stiff">stiff · 43% (lievito madre)</option><option value="liquid">liquid · 100%</option></select></div>
       <a class="caps arrow" data-recipe-link href="recipes/wheat-sourdough.html">the recipe</a>
