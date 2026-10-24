@@ -27,7 +27,7 @@ FONT_CSS = '\n'.join(FONTS)
 
 def footer(title, lang):
     label = {'en': 'page', 'sr': 'strana', 'ru': 'стр.'}[lang]
-    return f'''<style>#header,#footer{{padding:0!important;margin:0!important}}</style><div style="width:100%;height:16mm;box-sizing:border-box;background:#F7F6EE;display:flex;align-items:center;font-family:'JetBrains Mono',monospace;font-size:7.5px;letter-spacing:1.2px;text-transform:uppercase;color:#5A584F;padding:0 15mm;justify-content:space-between;-webkit-print-color-adjust:exact;print-color-adjust:exact">
+    return f'''<style>#header,#footer{{padding:0!important;margin:0!important}}</style><div style="width:100%;height:16mm;box-sizing:border-box;background:#F7F6EE;display:flex;align-items:center;font-family:'JetBrains Mono',monospace;font-size:7px;letter-spacing:.8px;white-space:nowrap;gap:12px;text-transform:uppercase;color:#5A584F;padding:0 15mm;justify-content:space-between;-webkit-print-color-adjust:exact;print-color-adjust:exact">
       <span>grain of taste · {title}</span><span>@grain_of_taste · {SITE.replace('https://', '')}</span><span>{label} <span class="pageNumber"></span> / <span class="totalPages"></span></span></div>'''
 
 def build(slug, page_path, lang, browser):

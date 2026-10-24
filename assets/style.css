@@ -315,3 +315,14 @@ nav.main a.unreleased::after{content:" ·dev";color:var(--red)}
 .clip-tabs button.on{background:var(--red);border-color:var(--red);color:var(--paper)}
 .clip-tabs button:focus-visible{outline:2px solid var(--red);outline-offset:2px}
 @media(max-width:820px){.video.tall,.clip-tabs{max-width:100%;margin-left:auto;margin-right:auto}.video.tall{max-width:min(100%,420px)}}
+
+/* hero: the big handwritten title spans the full width, text + photo sit below it */
+.hero > .title{grid-column:1/-1;font-size:clamp(64px,11vw,140px);margin:0 0 calc(var(--step)*.5)}
+.hero > .title span{white-space:nowrap}
+@media(max-width:600px){.hero > .title span{white-space:normal}}
+@media print{.hero > .title{font-size:120px}}
+
+/* step squares in the hero fit one row */
+.hero .steps{gap:12px}
+.hero .steps a{width:72px;height:72px;font-size:28px}
+@media(max-width:600px){.hero .steps{gap:8px}.hero .steps a{width:48px;height:48px;font-size:20px}}
