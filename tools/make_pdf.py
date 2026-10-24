@@ -32,7 +32,7 @@ def footer(title, lang):
 
 def build(slug, page_path, lang, browser):
     ctx = browser.new_context(locale=lang, viewport={'width': 1100, 'height': 1400})
-    ctx.add_init_script(f"try{{localStorage.setItem('got-lang','{lang}')}}catch(e){{}}")
+    ctx.add_init_script(f"try{{localStorage.setItem('got-lang','{lang}')}}catch(e){{}}; window.GOT_AS_PROD = true;")
     ctx.route(re.compile(r'^https?://'), lambda r: r.abort())   # everything is local
     pg = ctx.new_page()
     pg.goto((ROOT / page_path).as_uri())

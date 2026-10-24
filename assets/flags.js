@@ -17,7 +17,7 @@
     myths: /\/myths\/[^/]*$/,
     calculator: /\/calculator\.html$/
   };
-  var isProd = PROD_HOSTS.indexOf(location.hostname) > -1;
+  var isProd = PROD_HOSTS.indexOf(location.hostname) > -1 || window.GOT_AS_PROD === true;  /* PDF builder renders as prod */
   function hiddenSection(path) {
     for (var k in SECTIONS) if (!RELEASED[k] && SECTIONS[k].test(path)) return k;
     return null;
