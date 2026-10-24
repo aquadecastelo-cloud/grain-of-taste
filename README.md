@@ -1,0 +1,86 @@
+# grain of taste — сайт
+
+## Прод и зеркало
+
+- `main` — **прод**, его видят подписчики.
+- `dev` — **зеркало**: новые рецепты, статьи, правки. Адрес начинается с `dev.` — там сверху красная полоса DEV, и поисковики его не индексируют.
+- Выкатка: проверили на зеркале → `dev` сливается в `main` → прод обновляется сам.
+
+Статичный сайт: HTML + CSS + немного JS. Без сборки, без базы, без админки.
+Заливается на любой хостинг как папка (FTP / файловый менеджер хостинга). Главная — `index.html`.
+
+## Структура
+
+```
+index.html                      главная
+about.html                      кто я (plum)
+calculator.html                 калькулятор: хлеб / стартер 43% / стартер 100% (blue)
+what-you-need.html              что нужно для выпечки дома (paper)
+recipes/wheat-sourdough.html    пшеничный 75%, 25% ц/з, на стартере 43% (yellow)
+recipes/stiff-starter-43.html   стартер 43% — заготовка, слоты ‹…› (paper)
+recipes/liquid-starter-100.html стартер 100% — заготовка, слоты ‹…› (paper)
+science/index.html              рубрика «science & bread» — список обзоров (blue)
+science/2026-10-24-paper-review.html  шаблон обзора статьи (paper)
+myths/index.html                рубрика «myths» — список (sky)
+myths/myth-template.html        шаблон мифа (sky)
+assets/style.css                все стили, цвета и шрифты из брендбука
+assets/site.js                  иконки, видео-слоты, калькулятор
+photos/                         фото (пресет брендбука уже применён)
+videos/                         сюда класть mp4 для шагов (папка пустая)
+```
+
+## Как добавить видео к шагу
+
+В файле рецепта у каждого шага есть блок:
+
+```html
+<div class="video" data-src="" data-label="step 1 / 6 · mix"></div>
+```
+
+Впиши ссылку в `data-src`:
+- файл на хостинге: `data-src="../videos/wheat-01.mp4"` (вертикальное 4:5, до ~30 МБ лучше)
+- YouTube Shorts: `data-src="https://youtube.com/shorts/XXXXXXXXXXX"`
+- Instagram Reel: `data-src="https://www.instagram.com/reel/XXXXXXX/"`
+- Vimeo: `data-src="https://vimeo.com/123456"`
+
+Пусто — показывается заглушка «coming soon». Для mp4 можно добавить `data-poster="../photos/xxx.jpg"`.
+
+## Как добавить обзор статьи / миф
+
+1. Скопируй шаблон (`science/2026-10-24-paper-review.html` или `myths/myth-template.html`), назови `ГГГГ-ММ-ДД-слаг.html`.
+2. Заполни слоты `‹…›`.
+3. Добавь строку в `science/index.html` (или `myths/index.html`) — скопируй `<a class="post">…</a>` и поставь сверху.
+4. По желанию — такую же строку в `index.html` в блок «latest».
+
+## Калькулятор
+
+Формулы в `assets/site.js`, объект `FORMULAS`:
+- `wheat`: гидратация 75, соль 2, ц/з 25, мука внутри закваски 14.7 % от всей муки.
+  Округление как в рецептуре: 600 г → 71/85/204/233/7, 1150 г → 137/163/391/446/13; жидкая 100 % → 100/204 и 192/391.
+- `stiff` / `liquid`: только мука + вода на 43 % и 100 %.
+
+**Новый хлеб в списке «recipe» калькулятора** — одна строка в `FORMULAS`:
+```js
+rye: { type: 'bread', name: 'rye sourdough', page: 'recipes/rye.html', hydration: 80, salt: 2, ww: 40, pff: 15 },
+```
+Он сам появится в выпадающем списке. Для перевода названия добавь строку в `assets/i18n.js`.
+
+## Языки (EN / SR / RU)
+
+Сайт написан на английском. `assets/i18n.js` сам выбирает язык по браузеру посетителя
+(русский/украинский → RU, сербский/хорватский/боснийский → SR латиницей, остальные → EN),
+переключатель EN · SR · RU — в шапке, выбор запоминается.
+
+Переводы — готовый словарь, не машинный перевод на лету. Когда добавляешь новый текст,
+допиши строку в словарь: `"english text": ["srpski", "русский"],` — иначе этот текст останется английским.
+
+## Слоты, которые ждут текста
+
+- `what-you-need.html` — подписи к предметам (`‹caption›`), взять из поста в инстаграме.
+- `recipes/stiff-starter-43.html`, `recipes/liquid-starter-100.html` — рецептура кормления и шаги.
+- `about.html` — блок «the bakery».
+- Фото: `photos/starter-stiff.jpg`, `photos/starter-liquid.jpg` (пока нет — рамка пустая).
+
+## Шрифты
+
+Caveat, Playfair Display, JetBrains Mono, Golos Text подгружаются с Google Fonts. Офлайн / без интернета будут запасные системные.

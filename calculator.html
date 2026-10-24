@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>calculator · grain of taste</title>
+<meta name="description" content="Scale a sourdough recipe to the flour you have or the dough you want. Wheat loaf 75%, stiff starter 43%, liquid starter 100%.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Playfair+Display:ital@1&family=JetBrains+Mono:wght@400;500&family=Golos+Text:wght@900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body class="blue">
+<div class="wrap">
+
+<header class="site-header">
+  <a class="brand" href="index.html">grain of taste <span>bread, backed by science</span></a>
+  <nav class="main">
+    <a href="recipes/wheat-sourdough.html">recipes</a>
+    <a href="recipes/stiff-starter-43.html">starters</a>
+    <a href="science/index.html">science &amp; bread</a>
+    <a href="myths/index.html">myths</a>
+    <a class="on" href="calculator.html">calculator</a>
+    <a href="what-you-need.html">what you need</a>
+    <a href="about.html">about</a>
+  </nav>
+</header>
+
+<div class="page-head"><span class="caps">grain of taste</span><span class="caps">calculator</span><span class="caps">no magic, just scales</span></div>
+
+<h1 class="hand tilt">scale it</h1>
+<p class="thought">Type the flour you have, or the dough you want, and the number of loaves. Everything else follows baker's percentages — flour is always 100.</p>
+
+<!-- ===== wheat loaf ===== -->
+<section id="bread">
+  <div class="page-head"><span class="caps">01 · bread</span><span class="caps" data-spec-for="bread-scaler">75% · 25% whole wheat · 2% salt</span></div>
+  <div class="scaler calc" id="bread-scaler" data-formula="wheat">
+    <div>
+      <div class="field"><label class="caps" for="w-rec">recipe</label><select id="w-rec" name="recipe"></select></div>
+      <div class="field"><span class="caps">start from</span>
+        <div class="seg">
+          <label><input type="radio" name="mode-bread" value="flour" checked><span>flour I have</span></label>
+          <label><input type="radio" name="mode-bread" value="dough"><span>dough I want</span></label>
+        </div>
+      </div>
+      <div class="field"><label class="caps" for="w-amt">grams</label><input id="w-amt" name="amount" type="number" min="50" step="10" value="500" inputmode="numeric"></div>
+      <div class="field"><label class="caps" for="w-lv">loaves</label><input id="w-lv" name="loaves" type="number" min="1" max="12" step="1" value="1" inputmode="numeric"></div>
+      <div class="field"><label class="caps" for="w-st">starter</label><select id="w-st" name="starter"><option value="stiff">stiff · 43% (lievito madre)</option><option value="liquid">liquid · 100%</option></select></div>
+      <a class="caps arrow" data-recipe-link href="recipes/wheat-sourdough.html">the recipe</a>
+    </div>
+    <div class="calc-out"></div>
+  </div>
+</section>
+
+<!-- ===== stiff starter ===== -->
+<section id="stiff">
+  <div class="page-head"><span class="caps">02 · stiff starter</span><span class="caps">43% hydration</span></div>
+  <div class="scaler calc" data-formula="stiff">
+    <div>
+      <div class="field"><span class="caps">start from</span>
+        <div class="seg">
+          <label><input type="radio" name="mode-stiff" value="flour" checked><span>flour I have</span></label>
+          <label><input type="radio" name="mode-stiff" value="dough"><span>starter I want</span></label>
+        </div>
+      </div>
+      <div class="field"><label class="caps" for="s-amt">grams</label><input id="s-amt" name="amount" type="number" min="10" step="5" value="100" inputmode="numeric"></div>
+      <p class="note">This is the flour + water for one feeding. Add your ripe starter on top at the ratio from the <a href="recipes/stiff-starter-43.html" style="text-decoration:underline">starter page</a>.</p>
+    </div>
+    <div class="calc-out"></div>
+  </div>
+</section>
+
+<!-- ===== liquid starter ===== -->
+<section id="liquid">
+  <div class="page-head"><span class="caps">03 · liquid starter</span><span class="caps">100% hydration</span></div>
+  <div class="scaler calc" data-formula="liquid">
+    <div>
+      <div class="field"><span class="caps">start from</span>
+        <div class="seg">
+          <label><input type="radio" name="mode-liquid" value="flour" checked><span>flour I have</span></label>
+          <label><input type="radio" name="mode-liquid" value="dough"><span>starter I want</span></label>
+        </div>
+      </div>
+      <div class="field"><label class="caps" for="l-amt">grams</label><input id="l-amt" name="amount" type="number" min="10" step="5" value="100" inputmode="numeric"></div>
+      <p class="note">Flour + water for one feeding. Ratio and schedule on the <a href="recipes/liquid-starter-100.html" style="text-decoration:underline">starter page</a>.</p>
+    </div>
+    <div class="calc-out"></div>
+  </div>
+</section>
+
+<section>
+  <h2 class="hand tilt">how the math works</h2>
+  <div class="two">
+    <ol class="list">
+      <li><b>a</b>Flour is 100%. Water, salt and starter are percentages of flour, not of the dough.</li>
+      <li><b>b</b>The starter brings flour and water with it. The calculator subtracts both, so the final hydration stays at 75% whichever starter you use.</li>
+      <li><b>c</b>Prefermented flour — the flour inside the starter — is 14.7% of all flour. That is why stiff and liquid give different starter grams for the same loaf.</li>
+      <li><b>d</b>Dough weight = flour × (1 + hydration + salt). For this loaf: flour × 1.77.</li>
+    </ol>
+    <div>
+      <div class="plate"><span class="num">×1.77</span><span class="caps">flour → dough</span></div>
+      <p class="thought" style="margin-top:20px">So 339 g of flour makes a 600 g loaf, and 650 g makes 1150 g. Your bowl is the only limit.</p>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <span class="caps">@grain_of_taste · belgrade</span>
+  <span class="caps">rounded to the gram</span>
+  <a class="caps" href="index.html">home →</a>
+</footer>
+</div>
+<script src="assets/site.js"></script>
+<script src="assets/i18n.js"></script>
+</body>
+</html>

@@ -1,0 +1,253 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>wheat sourdough · 75% · grain of taste</title>
+<meta name="description" content="Wheat sourdough on stiff starter (lievito madre 43%): 75% hydration, 25% whole wheat, 2% salt. Grams for two loaf sizes, a scaler, and a video for every step.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Playfair+Display:ital@1&family=JetBrains+Mono:wght@400;500&family=Golos+Text:wght@900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body class="yellow">
+<div class="wrap">
+
+<header class="site-header">
+  <a class="brand" href="../index.html">grain of taste <span>bread, backed by science</span></a>
+  <nav class="main">
+    <a class="on" href="wheat-sourdough.html">recipes</a>
+    <a href="stiff-starter-43.html">starters</a>
+    <a href="../science/index.html">science &amp; bread</a>
+    <a href="../myths/index.html">myths</a>
+    <a href="../calculator.html">calculator</a>
+    <a href="../what-you-need.html">what you need</a>
+    <a href="../about.html">about</a>
+  </nav>
+</header>
+
+<div class="page-head"><span class="caps">grain of taste</span><span class="caps">wheat sourdough</span><span class="caps">no. 01</span></div>
+
+<!-- ===== cover ===== -->
+<section class="hero" style="padding-top:0">
+  <div>
+    <div class="title">wheat <span>sourdough</span></div>
+    <p class="thought" style="margin-top:28px">White + 25% whole wheat on lievito madre, a stiff 43% starter — my standard, super-active one, the starter I baked bread and pastry on at my bakery. Different starter? Don't worry, the recipe adapts. Dough hydration 75%. Sounds scary, it's simple.</p>
+    <div class="plates">
+      <div class="plate"><span class="num">75%</span><span class="caps">hydration</span></div>
+      <div class="plate"><span class="num">43%</span><span class="caps">starter</span></div>
+      <div class="plate accent"><span class="num">1 night</span><span class="caps">cold proof</span></div>
+    </div>
+    <div class="steps">
+      <a href="#s1">1</a><a href="#s2">2</a><a href="#s3">3</a><a href="#s4">4</a><a href="#s5">5</a><a href="#s6" class="last">6</a>
+    </div>
+  </div>
+  <div style="text-align:center">
+    <figure class="polaroid w320" style="margin:0">
+      <img class="ph" src="../photos/wheat-cover.jpg" alt="" onerror="this.removeAttribute('src')">
+      <figcaption class="cap">white + whole wheat</figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- ===== ingredients ===== -->
+<section>
+  <div class="page-head"><span class="caps">ingredients</span><span class="caps">02 / 08</span></div>
+  <div class="two">
+    <div>
+      <h2 class="hand tilt">what goes in</h2>
+      <!-- table is generated from the formula in assets/site.js (hydration 75, salt 2, ww 25, pff 14.7) -->
+      <div data-recipe-table="wheat" data-sizes="600,1150" data-starter="stiff"></div>
+      <p class="note" style="margin-top:14px">Starter 43% = 21% of the flour. Inside it: 50 g flour + 21 g water (600 g loaf), 96 g flour + 41 g water (1150 g loaf).</p>
+      <h3 class="hand" style="font-size:34px;margin:26px 0 10px">liquid starter 100%?</h3>
+      <ol class="list">
+        <li><b>a</b>Swap so the flour and water in the dough stay the same.</li>
+        <li><b>b</b>600 g: starter 100 g (not 71), water 204 g (not 233). Everything else the same.</li>
+        <li><b>c</b>1150 g: starter 192 g (not 137), water 391 g (not 446). Everything else the same.</li>
+        <li><b>d</b><span>Any other starter: it must carry 50 g / 96 g of flour; cut the dough water by whatever it brings above 21 g / 41 g. Or let the <a href="../calculator.html" style="text-decoration:underline">calculator</a> do it.</span></li>
+      </ol>
+    </div>
+    <div class="side" style="display:flex;flex-direction:column;gap:20px">
+      <div class="plates" style="margin:0"><div class="plate"><span class="num">11%+</span><span class="caps">protein · white flour</span></div><div class="plate"><span class="num">10%+</span><span class="caps">protein · whole wheat</span></div></div>
+      <p class="thought">Mine is Caputo Nuvola, 12.5%. Tools that matter: a scale, cast iron or any covered pot, and a blade for scoring.</p>
+      <div style="display:flex;gap:18px;font-size:44px;color:var(--ink)">
+        <span data-icon="scale" title="scale"></span><span data-icon="thermo" title="thermometer"></span><span data-icon="bowl" title="bowl"></span><span data-icon="basket" title="banneton"></span><span data-icon="pot" title="dutch oven"></span><span data-icon="blade" title="blade"></span>
+      </div>
+      <a class="caps arrow" href="../what-you-need.html">what you need</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== scaler ===== -->
+<section>
+  <div class="page-head"><span class="caps">scale it</span><span class="caps">your flour, your loaf</span></div>
+  <div class="scaler calc" data-formula="wheat">
+    <div>
+      <h2 class="hand tilt">how much do you have?</h2>
+      <div class="field"><span class="caps">start from</span>
+        <div class="seg">
+          <label><input type="radio" name="mode-recipe" value="flour" checked><span>flour I have</span></label>
+          <label><input type="radio" name="mode-recipe" value="dough"><span>dough I want</span></label>
+        </div>
+      </div>
+      <div class="field"><label class="caps" for="amt">grams</label><input id="amt" name="amount" type="number" min="50" step="10" value="500" inputmode="numeric"></div>
+      <div class="field"><label class="caps" for="lv">loaves</label><input id="lv" name="loaves" type="number" min="1" max="12" step="1" value="1" inputmode="numeric"></div>
+      <div class="field"><label class="caps" for="st">starter</label><select id="st" name="starter"><option value="stiff">stiff · 43% (lievito madre)</option><option value="liquid">liquid · 100%</option></select></div>
+    </div>
+    <div class="calc-out"></div>
+  </div>
+</section>
+
+<!-- ===== steps =====
+     Each step = one .step block. Video: put a link into data-src on the .video div:
+       data-src="../videos/wheat-01.mp4"  (file on your hosting, 4:5 vertical)
+       data-src="https://youtube.com/shorts/XXXXXXXXXXX"
+       data-src="https://www.instagram.com/reel/XXXXXXX/"
+     Leave it empty and the slot shows "coming soon". ===== -->
+
+<div class="step" id="s1">
+  <div class="head"><span class="num">01</span><span class="hand tilt">mix &amp; walk away</span></div>
+  <div>
+    <ol class="list">
+      <li><b>a</b>Weigh the water. Tear the starter into pieces — it gets to work faster.</li>
+      <li><b>b</b>White flour in, then whole wheat.</li>
+      <li><b>c</b>Mix with a spatula, just to wet the flour. No gluten development yet.</li>
+      <li><b>d</b>Cover and leave for autolyse.</li>
+    </ol>
+    <div class="plates"><div class="plate"><span class="num">30–50</span><span class="caps">min autolyse</span></div></div>
+    <p class="reply">just wet the flour</p>
+  </div>
+  <div class="side">
+    <div class="video" data-src="" data-label="step 1 / 6 · mix"></div>
+    <span class="caps">▶ step 1 / 6</span>
+  </div>
+</div>
+<div class="step" id="s2">
+  <div class="head"><span class="num">02</span><span class="hand tilt">salt &amp; the honest part</span></div>
+  <div>
+    <ol class="list">
+      <li><b>a</b>Salt in. Now knead properly.</li>
+      <li><b>b</b>Taste from two spots. One bland, one salty? Keep kneading.</li>
+    </ol>
+    <div class="plates"><div class="plate"><span class="num">2%</span><span class="caps">salt of flour</span></div></div>
+    <p class="reply">taste, don't guess</p>
+  </div>
+  <div class="side">
+    <div class="video" data-src="" data-label="step 2 / 6 · salt"></div>
+    <span class="caps">▶ step 2 / 6</span>
+  </div>
+</div>
+<div class="step" id="s3">
+  <div class="head"><span class="num">03</span><span class="hand tilt">26°. the number nobody checks</span></div>
+  <div>
+    <ol class="list">
+      <li><b>a</b>First fold, then measure the dough temperature.</li>
+      <li><b>b</b>26 °C or below. Above it fermentation runs ahead and the dough gets weak.</li>
+      <li><b>c</b>Mine was 27. Oops. First 30 min in the fridge — fixed.</li>
+      <li><b>d</b>Too warm is not a disaster, you cool it down. Next time — mix with cold water.</li>
+    </ol>
+    <div class="plates"><div class="plate accent"><span class="num">26°</span><span class="caps">max dough temp</span></div><div class="plate"><span class="num">30 min</span><span class="caps">fridge if warmer</span></div></div>
+    <p class="reply">use cold water next time</p>
+  </div>
+  <div class="side">
+    <div class="video" data-src="" data-label="step 3 / 6 · temperature"></div>
+    <span class="caps">▶ step 3 / 6</span>
+  </div>
+</div>
+<div class="step" id="s4">
+  <div class="head"><span class="num">04</span><span class="hand tilt">folds &amp; waiting</span></div>
+  <div>
+    <ol class="list">
+      <li><b>a</b>A fold every 30 minutes, four in total.</li>
+      <li><b>b</b>By the third one you see bubbles. A good sign.</li>
+      <li><b>c</b>On the fourth, check the gluten: stretch a piece thin. A window like this is what we want.</li>
+      <li><b>d</b>Now wait until the dough grows by 50–60%. Mine took about an hour and a half. And a sunset — sorry for the light.</li>
+    </ol>
+    <div class="plates"><div class="plate"><span class="num">4</span><span class="caps">folds · every 30 min</span></div><div class="plate accent"><span class="num">+50–60%</span><span class="caps">volume, not time</span></div></div>
+    <p class="reply">watch the dough, not the clock</p>
+  </div>
+  <div class="side">
+    <div class="video" data-src="" data-label="step 4 / 6 · folds"></div>
+    <span class="caps">▶ step 4 / 6</span>
+  </div>
+</div>
+<div class="step" id="s5">
+  <div class="head"><span class="num">05</span><span class="hand tilt">shape &amp; say good night</span></div>
+  <div>
+    <ol class="list">
+      <li><b>a</b>Preshape: round it, tightening the top. Rest 20–30 min.</li>
+      <li><b>b</b>Final shape: I do folds and swaddling. Any method you like works.</li>
+      <li><b>c</b>Another 20–30 min proof, then into the fridge overnight, covered.</li>
+    </ol>
+    <div class="plates"><div class="plate"><span class="num">20–30</span><span class="caps">min rest · ×2</span></div><div class="plate accent"><span class="num">~7°</span><span class="caps">fridge, overnight</span></div></div>
+    <p class="reply">tension on top, not force</p>
+  </div>
+  <div class="side">
+    <div class="video" data-src="" data-label="step 5 / 6 · shape"></div>
+    <span class="caps">▶ step 5 / 6</span>
+  </div>
+</div>
+<div class="step" id="s6">
+  <div class="head"><span class="num">06</span><span class="hand tilt">good morning. let's bake</span></div>
+  <div>
+    <ol class="list">
+      <li><b>a</b>Morning. The dough looks like this — time to bake.</li>
+      <li><b>b</b>Turn it out onto a mat, score on the side.</li>
+      <li><b>c</b>The dutch oven has been heating for an hour at 250 °C.</li>
+      <li><b>d</b>Lid on — 20 min. Lid off, down to 220 °C — another 20–25.</li>
+    </ol>
+    <div class="plates"><div class="plate"><span class="num">250°</span><span class="caps">20 min, lid on</span></div><div class="plate"><span class="num">220°</span><span class="caps">20–25 min, lid off</span></div></div>
+    <p class="reply">the score barely opened? that's the volume</p>
+  </div>
+  <div class="side">
+    <div class="video" data-src="" data-label="step 6 / 6 · bake"></div>
+    <span class="caps">▶ step 6 / 6</span>
+  </div>
+</div>
+
+<section>
+  <div class="page-head"><span class="caps">timing at a glance</span><span class="caps">watch the dough, not the clock</span></div>
+  <ol class="list" style="max-width:860px">
+    <li><b>a</b>Autolyse 30–50 min → salt, knead</li>
+    <li><b>b</b>4 folds, every 30 min → bulk until +50–60%</li>
+    <li><b>c</b>Preshape, rest 20–30 min → shape, proof 20–30 min → fridge overnight (~7 °C)</li>
+    <li><b>d</b>Bake 250 °C lid on 20 min + 220 °C lid off 20–25 min</li>
+  </ol>
+  <p class="note" style="margin-top:14px">Timing is approximate. A liquid starter may run a little faster or slower than lievito madre.</p>
+</section>
+
+<section style="border-top:2px solid var(--rule);padding-top:40px">
+  <div class="page-head" style="border-top:0;margin-bottom:30px"><span class="caps">the result</span><span class="caps">crust · crumb · side</span></div>
+  <div style="display:flex;gap:36px;flex-wrap:wrap;justify-content:center;padding:10px 0 20px">
+    <figure class="polaroid w240" style="margin:0"><img class="ph" src="../photos/wheat-top.jpg" alt="scored crust from above"><figcaption class="cap">the ear</figcaption></figure>
+    <figure class="polaroid r w240" style="margin:0"><img class="ph" src="../photos/wheat-side.jpg" alt="loaf on the rack"><figcaption class="cap">listen to that crust</figcaption></figure>
+    <figure class="polaroid w240" style="margin:0"><img class="ph" src="../photos/wheat-cut.jpg" alt="cut loaf"><figcaption class="cap">one hour later</figcaption></figure>
+  </div>
+</section>
+
+<!-- ===== final ===== -->
+<section style="border-top:2px solid var(--rule);padding-top:40px">
+  <div class="two" style="align-items:center">
+    <div>
+      <h2 class="hand tilt">and… here it is</h2>
+      <p class="thought">Here is our bread. The score opened a bit weakly — that's the volume. In homemade bread that's not the point. The point is taste, craft and love.</p>
+      <p><a class="btn" href="../calculator.html">scale this recipe</a> &nbsp; <a class="btn fill" href="https://instagram.com/grain_of_taste">follow · tag me</a></p>
+    </div>
+    <div style="text-align:center">
+      <figure class="polaroid r w320" style="margin:0">
+        <img class="ph" src="../photos/wheat-crumb.jpg" alt="" onerror="this.removeAttribute('src')">
+        <figcaption class="cap">taste, craft &amp; love</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <span class="caps">@grain_of_taste · belgrade</span>
+  <span class="caps">save it, bake it and tag me</span>
+  <a class="caps" href="../index.html">home →</a>
+</footer>
+</div>
+<script src="../assets/site.js"></script>
+<script src="../assets/i18n.js"></script>
+</body>
+</html>
