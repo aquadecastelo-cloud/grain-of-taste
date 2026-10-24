@@ -29,26 +29,48 @@
   });
 
   /* ---------- video slots ----------
-     <div class="video" data-src="..." data-poster="..."></div>
-     data-src: .mp4/.webm on your hosting → <video>; youtube / vimeo / instagram URL → iframe; empty → placeholder. */
+     One clip:   <div class="video" data-src="../videos/x.mp4" data-poster="../videos/x.jpg"></div>
+     Several:    <div class="video" data-src="../videos/a.mp4 | ../videos/b.mp4" data-poster="../videos/a.jpg | ../videos/b.jpg"
+                      data-clips="all folds | fold 3"></div>   → tabs under the player
+     data-src: .mp4/.webm file → <video> (loads only when played, shows the poster frame);
+               youtube / vimeo / instagram URL → embed; empty → "coming soon" placeholder.
+     Vertical phone videos (9:16) are shown whole, nothing is cropped. */
+  function split(v) { return (v || '').split('|').map(function (x) { return x.trim(); }).filter(Boolean); }
+  function player(src, poster, label) {
+    var m;
+    if ((m = src.match(/(?:youtube\.com\/(?:watch\?v=|shorts\/)|youtu\.be\/)([\w-]{11})/)))
+      return '<iframe src="https://www.youtube-nocookie.com/embed/' + m[1] + '" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen title="' + label + '"></iframe>';
+    if ((m = src.match(/vimeo\.com\/(\d+)/)))
+      return '<iframe src="https://player.vimeo.com/video/' + m[1] + '" loading="lazy" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen title="' + label + '"></iframe>';
+    if ((m = src.match(/instagram\.com\/(reel|p)\/([\w-]+)/)))
+      return '<iframe src="https://www.instagram.com/' + m[1] + '/' + m[2] + '/embed" loading="lazy" allowfullscreen title="' + label + '"></iframe>';
+    return '<video controls playsinline preload="none"' + (poster ? ' poster="' + poster + '"' : '') + ' aria-label="' + label + '"><source src="' + src + '" type="video/mp4"></video>';
+  }
   document.querySelectorAll('.video').forEach(function (box) {
-    var src = (box.getAttribute('data-src') || '').trim();
+    var srcs = split(box.getAttribute('data-src'));
+    var posters = split(box.getAttribute('data-poster'));
+    var names = split(box.getAttribute('data-clips'));
     var label = box.getAttribute('data-label') || 'video';
-    if (!src) {
+    if (!srcs.length) {
       box.innerHTML = '<div class="empty">' + icon('play') + '<span class="caps">' + label + '</span><span class="hand">coming soon</span></div>';
       return;
     }
-    var m;
-    if ((m = src.match(/(?:youtube\.com\/(?:watch\?v=|shorts\/)|youtu\.be\/)([\w-]{11})/))) {
-      box.innerHTML = '<iframe src="https://www.youtube-nocookie.com/embed/' + m[1] + '" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen title="' + label + '"></iframe>';
-    } else if ((m = src.match(/vimeo\.com\/(\d+)/))) {
-      box.innerHTML = '<iframe src="https://player.vimeo.com/video/' + m[1] + '" loading="lazy" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen title="' + label + '"></iframe>';
-    } else if ((m = src.match(/instagram\.com\/(reel|p)\/([\w-]+)/))) {
-      box.innerHTML = '<iframe src="https://www.instagram.com/' + m[1] + '/' + m[2] + '/embed" loading="lazy" allowfullscreen title="' + label + '"></iframe>';
-    } else {
-      var poster = box.getAttribute('data-poster');
-      box.innerHTML = '<video controls playsinline preload="metadata"' + (poster ? ' poster="' + poster + '"' : '') + '><source src="' + src + '"></video>';
+    if (srcs.some(function (x) { return /\.(mp4|webm|mov)(\?|$)/i.test(x); })) box.classList.add('tall');
+    var tabs = null;
+    function show(i) {
+      var screen = box.querySelector('.screen');
+      var old = screen.querySelector('video'); if (old) old.pause();
+      screen.innerHTML = player(srcs[i], posters[i], label);
+      if (tabs) tabs.querySelectorAll('button').forEach(function (b, j) { b.classList.toggle('on', j === i); b.setAttribute('aria-pressed', String(j === i)); });
     }
+    box.innerHTML = '<div class="screen"></div>';
+    if (srcs.length > 1) {
+      tabs = document.createElement('div'); tabs.className = 'clip-tabs';
+      tabs.innerHTML = srcs.map(function (x, i) { return '<button type="button">' + (names[i] || ('clip ' + (i + 1))) + '</button>'; }).join('');
+      box.parentNode.insertBefore(tabs, box.nextSibling);
+      tabs.querySelectorAll('button').forEach(function (b, i) { b.addEventListener('click', function () { show(i); }); });
+    }
+    show(0);
   });
 
   /* ---------- recipe formulas (baker's percentages, flour = 100) ----------
