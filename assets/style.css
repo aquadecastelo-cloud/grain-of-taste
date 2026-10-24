@@ -338,3 +338,5 @@ nav.main a.unreleased::after{content:" ·dev";color:var(--red)}
 .calc-band .field input[type=number],.calc-band .field select{background:var(--card)}
 @media print{.calc-band{display:none!important}}
 .calc-explain .list li strong{display:block;margin-bottom:4px}
+.blue .calc-explain .list li b{color:var(--accent)}
+.blue .calc-explain .list li strong{color:var(--fg)}
