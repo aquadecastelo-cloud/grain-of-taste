@@ -7,7 +7,7 @@
 <meta name="description" content="Wheat sourdough on stiff starter (lievito madre 43%): 75% hydration, 25% whole wheat, 2% salt. Grams for two loaf sizes, a scaler, and a video for every step.">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Playfair+Display:ital@1&family=JetBrains+Mono:wght@400;500&family=Golos+Text:wght@900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../assets/style.css?v=4d22ccb7">
+<link rel="stylesheet" href="../assets/style.css?v=8cf727f9">
 </head>
 <body class="yellow">
 <div class="wrap">
@@ -56,7 +56,7 @@
   <div class="two">
     <div>
       <h2 class="hand tilt">what goes in</h2>
-      <!-- table is generated from the formula in assets/site.js?v=2270b031 (hydration 75, salt 2, ww 25, pff 14.7) -->
+      <!-- table is generated from the formula in assets/site.js?v=83f55fb0 (hydration 75, salt 2, ww 25, pff 14.7) -->
       <div data-recipe-table="wheat" data-sizes="600,1150" data-starter="stiff"></div>
       <p class="note" style="margin-top:14px">Starter 43% = 21% of the flour. Inside it: 50 g flour + 21 g water (600 g loaf), 96 g flour + 41 g water (1150 g loaf).</p>
       <h3 class="hand" style="font-size:34px;margin:26px 0 10px">liquid starter 100%?</h3>
@@ -85,7 +85,7 @@
     <h2 class="hand tilt">what is this?</h2>
     <p class="thought">A calculator that rewrites this recipe for you. The recipe above is for 600 g and 1150 g of dough. Your bowl, your oven and your bag of flour are different — so type in what you have, and it tells you how many grams of everything to weigh.</p>
     <ol class="list">
-      <li><b>1</b><span><strong>Pick how you start.</strong> "Flour I have" — if you want to use what is in your cupboard: type how much white and how much whole wheat flour you have. "Dough I want" — if you know how big your loaf should be: type its weight.</span></li>
+      <li><b>1</b><span><strong>Pick how you start.</strong> "Flour I have" — if you want to use what is in your cupboard: type how much white and how much whole wheat flour you have. "Dough I want" — if you know how big one loaf should be: type its weight, or tap 600 g / 1150 g.</span></li>
       <li><b>2</b><span><strong>Say how many loaves</strong> and which starter you have: stiff (43%) or liquid (100%).</span></li>
       <li><b>3</b><span><strong>Weigh exactly the grams on the right.</strong> Every number keeps the recipe's proportions, so the bread turns out the same as mine — just bigger or smaller.</span></li>
     </ol>
@@ -100,10 +100,10 @@
           <label><input type="radio" name="mode-recipe" value="dough"><span>dough I want</span></label>
         </div>
       </div>
-      <div class="field" data-when="dough"><label class="caps" for="r-amt">dough I want, g</label><input id="r-amt" name="amount" type="number" min="50" step="10" value="1150" inputmode="numeric"></div>
+      <div class="field" data-when="dough"><label class="caps" for="r-amt">one loaf weighs, g</label><input id="r-amt" name="amount" type="number" min="50" step="10" value="1150" inputmode="numeric"><div class="presets"><button type="button" class="btn small" data-set="600"><span>small loaf</span> · 600 g</button><button type="button" class="btn small" data-set="1150"><span>big loaf</span> · 1150 g</button></div></div>
       <div class="field" data-when="flour"><label class="caps" for="r-hw">white bread flour I have, g</label><input id="r-hw" name="have-white" type="number" min="0" step="10" value="500" inputmode="numeric"></div>
       <div class="field" data-when="flour" data-ww><label class="caps" for="r-hz">whole wheat flour I have, g</label><input id="r-hz" name="have-ww" type="number" min="0" step="10" value="200" inputmode="numeric"></div>
-      <div class="field"><label class="caps" for="lv">loaves</label><input id="lv" name="loaves" type="number" min="1" max="12" step="1" value="1" inputmode="numeric"></div>
+      <div class="field"><label class="caps" for="lv">how many loaves</label><input id="lv" name="loaves" type="number" min="1" max="12" step="1" value="1" inputmode="numeric"></div>
       <div class="field"><label class="caps" for="st">starter</label><select id="st" name="starter"><option value="stiff">stiff · 43% (lievito madre)</option><option value="liquid">liquid · 100%</option></select></div>
     </div>
     <div class="calc-out"></div>
@@ -262,8 +262,8 @@
   <a class="caps" href="../index.html">home →</a>
 </footer>
 </div>
-<script src="../assets/site.js?v=2270b031"></script>
-<script src="../assets/i18n.js?v=5b711849"></script>
+<script src="../assets/site.js?v=83f55fb0"></script>
+<script src="../assets/i18n.js?v=4017e6c5"></script>
 <script src="../assets/flags.js?v=c4b27a1a"></script>
 </body>
 </html>

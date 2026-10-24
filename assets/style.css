@@ -341,3 +341,21 @@ nav.main a.unreleased::after{content:" ·dev";color:var(--red)}
 .blue .calc-explain .list li b{color:var(--accent)}
 .blue .calc-explain .list li strong{color:var(--fg)}
 .blue .calc-explain .list li b{opacity:1}
+
+/* calculator v3 */
+.presets{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.presets .btn{margin:0}
+.calc-split{margin:-6px 0 14px;font-size:15px}
+table.t tr.sum td{font-weight:500;border-top:2px solid var(--rule);border-bottom:0;padding-top:16px}
+table.t tr.sum td:first-child{font-family:var(--mono);text-transform:uppercase;letter-spacing:.12em;font-size:13px}
+.calc-actions{margin-top:18px}
+.print-sheet{display:none}
+@media print{
+  body.print-calc .wrap > *:not(.print-sheet){display:none!important}
+  body.print-calc .print-sheet{display:block!important}
+  body.print-calc .print-sheet h1.hand{font-size:72px;margin:10mm 0 4mm;transform:none}
+  body.print-calc .print-sheet .calc-out{display:block!important}
+  body.print-calc .print-sheet .big{font-size:80px}
+  body.print-calc .print-foot{margin-top:12mm}
+  body.print-calc{background:var(--paper)!important;color:var(--ink)!important;--fg:var(--ink);--rule:var(--ink);--accent:var(--red)}
+}

@@ -7,7 +7,7 @@
 <meta name="description" content="Scale a sourdough recipe to the flour you have or the dough you want. Wheat loaf 75%, stiff starter 43%, liquid starter 100%.">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Playfair+Display:ital@1&family=JetBrains+Mono:wght@400;500&family=Golos+Text:wght@900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/style.css?v=4d22ccb7">
+<link rel="stylesheet" href="assets/style.css?v=8cf727f9">
 </head>
 <body class="blue">
 <div class="wrap">
@@ -32,7 +32,7 @@
   <p class="thought">Type the flour you have, or the dough you want, and the number of loaves. Everything else follows baker's percentages — flour is always 100.</p>
   <ol class="list">
     <li><b>1</b><span><strong>Pick a recipe</strong> from the list.</span></li>
-    <li><b>2</b><span><strong>Pick how you start.</strong> "Flour I have" — type how much of each flour is in your cupboard. "Dough I want" — type how heavy your loaf should be.</span></li>
+    <li><b>2</b><span><strong>Pick how you start.</strong> "Flour I have" — type how much of each flour is in your cupboard. "Dough I want" — type how heavy one loaf should be, or tap 600 g / 1150 g.</span></li>
     <li><b>3</b><span><strong>Weigh exactly the grams on the right.</strong> The proportions stay the same as in the recipe, so the bread turns out the same — just bigger or smaller.</span></li>
   </ol>
 </div>
@@ -49,10 +49,10 @@
           <label><input type="radio" name="mode-bread" value="dough"><span>dough I want</span></label>
         </div>
       </div>
-      <div class="field" data-when="dough"><label class="caps" for="w-amt">dough I want, g</label><input id="w-amt" name="amount" type="number" min="50" step="10" value="1150" inputmode="numeric"></div>
+      <div class="field" data-when="dough"><label class="caps" for="w-amt">one loaf weighs, g</label><input id="w-amt" name="amount" type="number" min="50" step="10" value="1150" inputmode="numeric"><div class="presets"><button type="button" class="btn small" data-set="600"><span>small loaf</span> · 600 g</button><button type="button" class="btn small" data-set="1150"><span>big loaf</span> · 1150 g</button></div></div>
       <div class="field" data-when="flour"><label class="caps" for="w-hw">white bread flour I have, g</label><input id="w-hw" name="have-white" type="number" min="0" step="10" value="500" inputmode="numeric"></div>
       <div class="field" data-when="flour" data-ww><label class="caps" for="w-hz">whole wheat flour I have, g</label><input id="w-hz" name="have-ww" type="number" min="0" step="10" value="200" inputmode="numeric"></div>
-      <div class="field"><label class="caps" for="w-lv">loaves</label><input id="w-lv" name="loaves" type="number" min="1" max="12" step="1" value="1" inputmode="numeric"></div>
+      <div class="field"><label class="caps" for="w-lv">how many loaves</label><input id="w-lv" name="loaves" type="number" min="1" max="12" step="1" value="1" inputmode="numeric"></div>
       <div class="field"><label class="caps" for="w-st">starter</label><select id="w-st" name="starter"><option value="stiff">stiff · 43% (lievito madre)</option><option value="liquid">liquid · 100%</option></select></div>
       <a class="caps arrow" data-recipe-link href="recipes/wheat-sourdough.html">the recipe</a>
     </div>
@@ -118,8 +118,8 @@
   <a class="caps" href="index.html">home →</a>
 </footer>
 </div>
-<script src="assets/site.js?v=2270b031"></script>
-<script src="assets/i18n.js?v=5b711849"></script>
+<script src="assets/site.js?v=83f55fb0"></script>
+<script src="assets/i18n.js?v=4017e6c5"></script>
 <script src="assets/flags.js?v=c4b27a1a"></script>
 </body>
 </html>

@@ -106,6 +106,33 @@
   function r(x) { return Math.round(x); }
   window.gotCompute = compute;
 
+  /* ---------- printable calculation (print / save as PDF from the browser) ---------- */
+  function printSheet(root, f, n, one, st) {
+    var old = document.querySelector('.print-sheet'); if (old) old.remove();
+    var sheet = document.createElement('div'); sheet.className = 'print-sheet';
+    var pick = root.querySelector('[name=recipe]'), stSel = root.querySelector('[name=starter]');
+    var title = pick ? pick.options[pick.selectedIndex].textContent : f.name;
+    var d = new Date(), date = ('0' + d.getDate()).slice(-2) + '.' + ('0' + (d.getMonth() + 1)).slice(-2) + '.' + d.getFullYear();
+    sheet.innerHTML = '<div class="page-head"><span class="caps">grain of taste</span><span class="caps">recipe calculator</span><span class="caps">' + date + '</span></div>'
+      + '<h1 class="hand">' + title + '</h1>'
+      + '<p class="caps print-sum">' + (root.querySelector('[name=loaves]') ? '<span>loaves:</span> ' + n + ' × <span>' + one + ' g</span> · ' : '')
+      + (stSel ? '<span>starter:</span> ' + stSel.options[stSel.selectedIndex].textContent : '') + '</p>';
+    var res = root.querySelector('.calc-out').cloneNode(true);
+    res.querySelectorAll('.calc-actions').forEach(function (x) { x.remove(); });
+    sheet.appendChild(res);
+    var foot = document.createElement('p'); foot.className = 'caps print-foot';
+    var a = document.querySelector('.site-header .brand');
+    foot.textContent = '@grain_of_taste · ' + (a ? a.href.replace(/index\.html$/, '') : location.origin);
+    sheet.appendChild(foot);
+    document.querySelector('.wrap').appendChild(sheet);
+    if (window.gotI18n) window.gotI18n.apply(sheet);
+    document.body.classList.add('print-calc');
+    /* some browsers fire afterprint before the sheet is painted — leave print mode a moment later */
+    var done = function () { window.removeEventListener('afterprint', done); setTimeout(function () { document.body.classList.remove('print-calc'); }, 1500); };
+    window.addEventListener('afterprint', done);
+    window.print();
+  }
+
   /* ---------- scaler widget ----------
      <div class="scaler" data-formula="wheat"> … </div> with inputs inside (see calculator.html / recipe page) */
   document.querySelectorAll('.scaler').forEach(function (root) {
@@ -129,54 +156,62 @@
     function val(name) { var el = root.querySelector('[name="' + name + '"]'); return el ? Math.max(0, parseFloat(el.value) || 0) : null; }
     function render() {
       var m = (root.querySelector('[name^=mode]:checked') || {}).value || 'flour';
-      var n = loaves ? (parseInt(loaves.value, 10) || 1) : 1;
+      var n = loaves ? Math.max(1, parseInt(loaves.value, 10) || 1) : 1;
       var st = starterType ? starterType.value : 'stiff';
       var hasStock = !!root.querySelector('[name="have-white"]');
-      /* show the inputs that belong to the chosen mode; hide the whole-wheat stock when the recipe has none */
+      var k = 1 + f.hydration / 100 + f.salt / 100;          /* dough weight = flour × k */
       root.querySelectorAll('[data-when]').forEach(function (el) {
         el.hidden = el.getAttribute('data-when') !== m || (el.hasAttribute('data-ww') && !f.ww);
       });
-      var F, stockNote = '';
+      /* F1 = flour in ONE loaf. Totals are always exactly n × one loaf, so the columns agree. */
+      var F1, stockNote = '';
       if (m === 'dough') {
-        F = (val('amount') || 0) / (1 + f.hydration / 100 + f.salt / 100);
+        F1 = (val('amount') || 0) / k;                       /* the field is the weight of one loaf */
       } else if (hasStock) {
-        /* flour I have, per flour: the biggest loaf both stocks allow at the recipe's ratio.
+        /* flour I have, per flour: the biggest loaves both stocks allow at the recipe's ratio.
            The starter's own flour is not taken from these stocks — the starter is fed separately. */
         var W = val('have-white') || 0, Z = f.ww ? (val('have-ww') || 0) : Infinity;
         var whiteShare = 1 - f.ww / 100 - f.pff / 100, wwShare = f.ww / 100;
         var byWhite = W / whiteShare, byWw = f.ww ? Z / wwShare : Infinity;
-        F = Math.floor(Math.min(byWhite, byWw));
-        while (F > 0) { var t = compute(f, F, st); if (t.white <= W && t.ww <= Z) break; F--; }
-        var d0 = compute(f, F, st);
+        F1 = Math.floor(Math.min(byWhite, byWw) / n);
+        while (F1 > 0) { var t = compute(f, F1, st); if (t.white * n <= W && t.ww * n <= Z) break; F1--; }
         if (f.ww) {
-          var wwFirst = byWw <= byWhite;
-          var leftG = wwFirst ? W - d0.white : Z - d0.ww;
+          var d0 = compute(f, F1, st), wwFirst = byWw <= byWhite;
+          var leftG = wwFirst ? W - d0.white * n : Z - d0.ww * n;
           stockNote = '<p class="note stock-note"><span>runs out first:</span> <b>' + (wwFirst ? 'whole wheat flour' : 'white bread flour') + '</b><br>'
-            + '<span>left over:</span> <b>' + r(leftG) + '\u00a0g</b> <span>' + (wwFirst ? 'white bread flour' : 'whole wheat flour') + '</span><br>'
+            + '<span>left over:</span> <b>' + r(leftG) + ' g</b> <span>' + (wwFirst ? 'white bread flour' : 'whole wheat flour') + '</span><br>'
             + '<span>starter not included — feed it separately.</span></p>';
         }
       } else {
-        F = val('amount') || 0;
+        F1 = val('amount') || 0;                             /* starters: one batch */
       }
-      var d = compute(f, F, st);
-      var per = n > 1 ? compute(f, F / n, st) : null;
+      var d = compute(f, F1, st);
       var rows = [];
       if (f.pff > 0) rows.push(['starter · ' + d.sh + '%', d.starter]);
       if (f.ww > 0) rows.push(['whole wheat flour', d.ww]);
       rows.push([f.ww > 0 ? 'white bread flour' : 'flour', d.white]);
       rows.push(['water', d.water]);
       if (f.salt > 0) rows.push(['salt', d.salt]);
-      var html = '<div class="big num">' + r(d.total) + ' <span class="caps" style="font-size:15px">g dough</span></div>';
-      html += '<table class="t"><tr><th>ingredient</th><th class="r">' + (per ? 'total' : 'grams') + '</th>' + (per ? '<th class="r">× 1 of ' + n + '</th>' : '') + '</tr>';
+      var one = d.total, all = one * n, many = n > 1;
+      var unitWord = loaves ? 'g of dough' : 'g';
+      var html = '<div class="big num">' + all + ' <span class="caps" style="font-size:15px">' + unitWord + '</span></div>';
+      if (many) html += '<p class="caps calc-split"><span class="num">' + n + '</span> × <span class="num">' + one + ' g</span></p>';
+      html += '<table class="t"><tr><th>ingredient</th>' + (many ? '<th class="r">1 loaf</th><th class="r">total</th>' : '<th class="r">grams</th>') + '</tr>';
       rows.forEach(function (row) {
-        html += '<tr><td>' + row[0] + '</td><td class="r num">' + r(row[1]) + '\u00a0g</td>' + (per ? '<td class="r num">' + r(row[1] / n) + '\u00a0g</td>' : '') + '</tr>';
+        html += '<tr><td>' + row[0] + '</td>' + (many ? '<td class="r num">' + row[1] + ' g</td>' : '') + '<td class="r num">' + row[1] * n + ' g</td></tr>';
       });
-      html += '<tr class="total"><td class="caps">total flour · 100%</td><td class="r num">' + r(d.flour) + '\u00a0g</td>' + (per ? '<td class="r num">' + r(d.flour / n) + '\u00a0g</td>' : '') + '</tr></table>';
+      html += '<tr class="sum"><td>' + (loaves ? 'total dough' : 'total') + '</td>' + (many ? '<td class="r num">' + one + ' g</td>' : '') + '<td class="r num">' + all + ' g</td></tr></table>';
       html += stockNote;
-      html += '<p class="note">hydration ' + f.hydration + '% · salt ' + f.salt + '%' + (f.ww ? ' · whole wheat ' + f.ww + '%' : '') + (f.pff ? ' · prefermented flour ' + f.pff + '%' : '') + '. Rounded to the gram — your scale does the same.</p>';
+      html += '<p class="note"><span>flour in total (100%):</span> <span>' + d.flour * n + ' g</span><br><span>hydration ' + f.hydration + '% · salt ' + f.salt + '%' + (f.ww ? ' · whole wheat ' + f.ww + '%' : '') + (f.pff ? ' · prefermented flour ' + f.pff + '%' : '') + '. Rounded to the gram — your scale does the same.</span></p>';
+      html += '<p class="calc-actions"><button type="button" class="btn small calc-print">print / save PDF</button></p>';
       out.innerHTML = html;
+      out.querySelector('.calc-print').addEventListener('click', function () { printSheet(root, f, n, one, st); });
       if (window.gotI18n) window.gotI18n.apply(out);
     }
+    /* quick weights: <button data-set="600"> */
+    root.querySelectorAll('[data-set]').forEach(function (b) {
+      b.addEventListener('click', function () { var a = root.querySelector('[name="amount"]'); a.value = b.getAttribute('data-set'); render(); });
+    });
     root.addEventListener('input', render);
     root.addEventListener('change', render);
     render();
