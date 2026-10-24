@@ -7,7 +7,7 @@
     starters: false,
     science: false,
     myths: false,
-    calculator: false
+    calculator: true
   };
   var PROD_HOSTS = ['aquadecastelo-cloud.github.io'];   /* add the domain here once it's bought */
 
