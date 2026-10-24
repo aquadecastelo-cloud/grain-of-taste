@@ -242,6 +242,10 @@
     "Any other starter: it must carry 50 g / 96 g of flour; cut the dough water by whatever it brings above 21 g / 41 g. Or let the":
       ["Bilo koje drugo kiselo testo: u njemu mora biti 50 g / 96 g brašna; vodu u testu smanjite za onoliko koliko kiselo testo donese preko 21 g / 41 g. Ili neka to uradi",
        "Любая другая закваска: в ней должно быть 50 г / 96 г муки, а воду в тесте уменьшаем на столько, сколько пришло с закваской сверх 21 г / 41 г. Или пусть это сделает"],
+    "Any other starter: it must carry 50 g / 96 g of flour; cut the dough water by whatever it brings above 21 g / 41 g.":
+      ["Bilo koje drugo kiselo testo: u njemu mora biti 50 g / 96 g brašna; vodu u testu smanjite za onoliko koliko kiselo testo donese preko 21 g / 41 g.",
+       "Любая другая закваска: в ней должно быть 50 г / 96 г муки, а воду в тесте уменьшаем на столько, сколько пришло с закваской сверх 21 г / 41 г."],
+    "Or let the": ["Ili neka to uradi", "Или пусть это сделает"],
     "do it.": ["umesto vas.", "за вас."],
     "protein · white flour": ["protein · belo brašno", "белок · белая мука"],
     "protein · whole wheat": ["protein · integralno", "белок · цельнозерновая"],
