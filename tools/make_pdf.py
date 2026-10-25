@@ -13,7 +13,7 @@ from pypdf import PdfReader, PdfWriter
 from pypdf.constants import UserAccessPermissions as P
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
-SITE = os.environ.get('GOT_SITE', 'https://aquadecastelo-cloud.github.io/grain-of-taste')  # change to the domain once bought
+SITE = os.environ.get('GOT_SITE', 'https://grainoftaste.com')
 RECIPES = {'wheat-sourdough': 'recipes/wheat-sourdough.html'}
 TITLES = {'wheat-sourdough': {'en': 'wheat sourdough', 'sr': 'pšenični hleb na kiselom testu', 'ru': 'пшеничный хлеб на закваске'}}
 LANGS = ['en', 'sr', 'ru']

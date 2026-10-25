@@ -9,7 +9,7 @@
     myths: false,
     calculator: true
   };
-  var PROD_HOSTS = ['aquadecastelo-cloud.github.io'];   /* add the domain here once it's bought */
+  var PROD_HOSTS = ['grainoftaste.com', 'www.grainoftaste.com', 'aquadecastelo-cloud.github.io'];
 
   var SECTIONS = {
     starters: /\/recipes\/(stiff-starter-43|liquid-starter-100)\.html$/,
