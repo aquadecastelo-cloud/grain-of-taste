@@ -1,5 +1,9 @@
 # grain of taste — сайт
 
+## Адрес
+
+Прод: **https://grainoftaste.com** (домен в Cloudflare, DNS only → GitHub Pages; файл `CNAME` в корне).
+
 ## Прод и зеркало
 
 Перед каждой выкаткой: `python3 tools/bump_assets.py` — ставит метку версии на стили и скрипты, чтобы браузеры не смешивали новую страницу со старыми стилями из кэша.
