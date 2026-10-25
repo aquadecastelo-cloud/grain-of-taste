@@ -453,3 +453,5 @@ h2.hand{font-size:clamp(32px,4.2vw,52px)}
 @media(max-width:500px){.strip{grid-template-columns:repeat(2,minmax(0,1fr))}}
 .polaroid.w280 .cap{font-size:24px}
 @media(max-width:500px){.calc-strip{grid-template-columns:repeat(2,minmax(0,1fr))}.calc-strip .polaroid:nth-child(n+3){display:none}}
+.strip .polaroid,.gallery .polaroid{margin-left:0;margin-right:0}
+.strip .polaroid{margin-top:0;margin-bottom:0}
