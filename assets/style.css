@@ -389,3 +389,5 @@ table.trouble td:last-child{font-family:var(--serif);font-style:italic;font-size
 .strip .polaroid .cap{font-size:20px;bottom:10px;left:6px;right:6px;height:auto;line-height:1}
 @media(max-width:900px){.strip{grid-template-columns:repeat(3,1fr)}.strip .polaroid:nth-child(n+4){display:none}}
 @media(max-width:500px){.strip{grid-template-columns:repeat(2,1fr);gap:14px}.strip .polaroid:nth-child(n+3){display:none}.strip .polaroid .cap{font-size:16px}}
+.strip{padding:6px 10px;overflow:hidden}
+.author{overflow-x:clip}
