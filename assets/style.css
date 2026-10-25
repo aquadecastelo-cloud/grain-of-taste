@@ -574,3 +574,9 @@ h2.hand{font-size:clamp(32px,4.2vw,52px)}
   .gallery .polaroid .cap{font-size:20px;line-height:1;bottom:14px}
   .gallery .polaroid.big .cap{font-size:30px}
 }
+/* about: my photo, 1.5× the standard hero polaroid */
+.polaroid.me{width:420px;padding:22px 22px 92px}
+.polaroid.me .cap{font-size:36px;height:92px}
+@media(max-width:820px){.polaroid.me{width:min(420px,100%)}}
+@media(max-width:500px){.polaroid.me{padding:14px 14px 70px}.polaroid.me .cap{font-size:28px;height:70px}}
+@media(max-width:820px){.polaroid.me{width:min(420px,calc(100% - 28px));transform:rotate(1.5deg)}}
