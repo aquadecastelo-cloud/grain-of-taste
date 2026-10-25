@@ -264,3 +264,11 @@
     });
   });
 })();
+
+/* ---------- kit checklist: ticks remembered in this browser, shared between the recipe and "what you need" ---------- */
+(function () {
+  document.querySelectorAll('.kit-check input[type=checkbox]').forEach(function (cb) {
+    try { cb.checked = localStorage.getItem('got-' + cb.id) === '1'; } catch (e) {}
+    cb.addEventListener('change', function () { try { localStorage.setItem('got-' + cb.id, cb.checked ? '1' : '0'); } catch (e) {} });
+  });
+})();
