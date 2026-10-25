@@ -197,11 +197,12 @@
       var html = '<div class="big num">' + all + ' <span class="caps" style="font-size:15px">' + unitWord + '</span></div>';
       if (loaves) html += '<p class="note baked">≈ <span class="num">' + Math.round(one * 0.85) + '</span> <span>g of baked bread per loaf, approx.</span></p>';
       if (many) html += '<p class="caps calc-split"><span class="num">' + n + '</span> × <span class="num">' + one + ' g</span></p>';
+      html += '<div class="calc-card"><p class="caps calc-card-head">weigh this</p>';
       html += '<table class="t"><tr><th>ingredient</th>' + (many ? '<th class="r">1 loaf</th><th class="r">total</th>' : '<th class="r">grams</th>') + '</tr>';
       rows.forEach(function (row) {
         html += '<tr><td>' + row[0] + '</td>' + (many ? '<td class="r num">' + row[1] + ' g</td>' : '') + '<td class="r num">' + row[1] * n + ' g</td></tr>';
       });
-      html += '<tr class="sum"><td>' + (loaves ? 'total dough' : 'total') + '</td>' + (many ? '<td class="r num">' + one + ' g</td>' : '') + '<td class="r num">' + all + ' g</td></tr></table>';
+      html += '<tr class="sum"><td>' + (loaves ? 'total dough' : 'total') + '</td>' + (many ? '<td class="r num">' + one + ' g</td>' : '') + '<td class="r num">' + all + ' g</td></tr></table></div>';
       html += stockNote;
       html += '<p class="note"><span>flour in total (100%):</span> <span>' + d.flour * n + ' g</span><br><span>hydration ' + f.hydration + '% · salt ' + f.salt + '%' + (f.ww ? ' · whole wheat ' + f.ww + '%' : '') + (f.pff ? ' · prefermented flour ' + f.pff + '%' : '') + '. Rounded to the gram — your scale does the same.</span></p>';
       html += '<p class="calc-actions"><button type="button" class="btn small calc-print">print / save PDF</button></p>';
@@ -230,6 +231,37 @@
     h += '</table>';
     el.innerHTML = h;
   });
+})();
+
+/* ---------- recipe: sticky step navigation ----------
+   <nav class="step-nav"> slides in once the cover is out of view; the part you are reading is marked. */
+(function () {
+  var nav = document.querySelector('.step-nav');
+  if (!nav) return;
+  var inner = nav.querySelector('.in');
+  var hero = document.querySelector('.hero');
+  var links = [].slice.call(nav.querySelectorAll('a[href^="#"]'));
+  var targets = links.map(function (a) { return document.querySelector(a.getAttribute('href')); });
+  var ticking = false;
+  function update() {
+    ticking = false;
+    var bar = document.querySelector('.dev-bar');
+    nav.style.top = bar ? bar.offsetHeight + 'px' : '0px';
+    var show = hero ? hero.getBoundingClientRect().bottom < 0 : true;
+    nav.classList.toggle('show', show);
+    var line = nav.offsetHeight + 60, cur = -1;
+    targets.forEach(function (t, i) { if (t && t.getBoundingClientRect().top <= line) cur = i; });
+    links.forEach(function (a, i) {
+      var on = i === cur;
+      if (on === a.classList.contains('on')) return;
+      a.classList.toggle('on', on);
+      if (on && inner.scrollWidth > inner.clientWidth) inner.scrollTo({ left: a.offsetLeft - 24, behavior: 'smooth' });
+    });
+  }
+  function req() { if (!ticking) { ticking = true; requestAnimationFrame(update); } }
+  window.addEventListener('scroll', req, { passive: true });
+  window.addEventListener('resize', req);
+  update();
 })();
 
 /* ---------- mirror (dev) marker ----------

@@ -14,7 +14,7 @@
 <meta name="description" content="Wheat sourdough on stiff starter (lievito madre 43%): 75% hydration, 25% whole wheat, 2% salt. Grams for two loaf sizes, a scaler, and a video for every step.">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Playfair+Display:ital@1&family=JetBrains+Mono:wght@400;500&family=Golos+Text:wght@900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../assets/style.css?v=336c7eff">
+<link rel="stylesheet" href="../assets/style.css?v=aea275dd">
 </head>
 <body class="yellow">
 <div class="wrap">
@@ -57,6 +57,21 @@
   </div>
 </section>
 
+
+<!-- ===== sticky step navigation: appears once the cover scrolls away (assets/site.js?v=ed59f9e9) ===== -->
+<nav class="step-nav no-pdf" aria-label="recipe steps">
+  <div class="in">
+    <a href="#ingredients" class="sn-extra"><span>ingredients</span></a>
+    <a href="#calculator" class="sn-extra"><span>calculator</span></a>
+    <a href="#s1"><b>1</b><span>mix</span></a>
+    <a href="#s2"><b>2</b><span>salt</span></a>
+    <a href="#s3"><b>3</b><span>temperature</span></a>
+    <a href="#s4"><b>4</b><span>folds</span></a>
+    <a href="#s5"><b>5</b><span>shape</span></a>
+    <a href="#s6"><b>6</b><span>bake</span></a>
+  </div>
+</nav>
+
 <!-- ===== before you start: kit checklist (ticks shared with what-you-need) ===== -->
 <section id="kit">
   <div class="page-head"><span class="caps">before you start</span><span class="caps">check your kit</span></div>
@@ -80,12 +95,12 @@
 </section>
 
 <!-- ===== ingredients ===== -->
-<section>
+<section id="ingredients">
   <div class="page-head"><span class="caps">ingredients</span><span class="caps">02 / 08</span></div>
   <div class="two">
     <div>
       <h2 class="hand tilt">what goes in</h2>
-      <!-- table is generated from the formula in assets/site.js?v=e478d65f (hydration 75, salt 2, ww 25, pff 14.7) -->
+      <!-- table is generated from the formula in assets/site.js?v=ed59f9e9 (hydration 75, salt 2, ww 25, pff 14.7) -->
       <div data-recipe-table="wheat" data-sizes="600,1150" data-starter="stiff"></div>
       <p class="note" style="margin-top:14px">Starter 43% = 21% of the flour. Inside it: 50 g flour + 21 g water (600 g loaf), 96 g flour + 41 g water (1150 g loaf).</p>
       <h3 class="hand" style="font-size:34px;margin:26px 0 10px">liquid starter 100%?</h3>
@@ -113,13 +128,16 @@
   <div class="calc-explain">
     <h2 class="hand tilt">what is this?</h2>
     <p class="thought">A calculator that rewrites this recipe for you. The recipe above is for 600 g and 1150 g of dough. Your bowl, your oven and your bag of flour are different — so type in what you have, and it tells you how many grams of everything to weigh.</p>
-    <ol class="list">
-      <li><b>1</b><span><strong>Pick how you start.</strong> "Flour I have" — if you want to use what is in your cupboard: type how much white and how much whole wheat flour you have. "Dough I want" — if you know how big one loaf should be: type its weight, or tap 600 g / 1150 g.</span></li>
-      <li><b>2</b><span><strong>Say how many loaves</strong> and which starter you have: stiff (43%) or liquid (100%).</span></li>
-      <li><b>3</b><span><strong>Weigh exactly the grams on the right.</strong> Every number keeps the recipe's proportions, so the bread turns out the same as mine — just bigger or smaller.</span></li>
-    </ol>
-    <p class="note"><strong>Dough or bread? All weights in the calculator are dough. In the oven a loaf loses about 12–18% of its water: 600 g of dough → about 510 g of bread, 1150 g → about 980 g. Want 600 g of baked bread? Type about 700 g of dough.</strong></p>
-    <p class="note">Why two flours separately? The recipe needs 3 parts white to 1 part whole wheat. If you have little of one, the calculator makes the loaf smaller so neither runs out, and tells you which flour ends first.</p>
+    <details class="calc-how">
+      <summary><span>how to use it · 3 steps</span></summary>
+      <ol class="list">
+        <li><b>1</b><span><strong>Pick how you start.</strong> "Flour I have" — if you want to use what is in your cupboard: type how much white and how much whole wheat flour you have. "Dough I want" — if you know how big one loaf should be: type its weight, or tap 600 g / 1150 g.</span></li>
+        <li><b>2</b><span><strong>Say how many loaves</strong> and which starter you have: stiff (43%) or liquid (100%).</span></li>
+        <li><b>3</b><span><strong>Weigh exactly the grams on the right.</strong> Every number keeps the recipe's proportions, so the bread turns out the same as mine — just bigger or smaller.</span></li>
+      </ol>
+      <p class="note"><strong>Dough or bread? All weights in the calculator are dough. In the oven a loaf loses about 12–18% of its water: 600 g of dough → about 510 g of bread, 1150 g → about 980 g. Want 600 g of baked bread? Type about 700 g of dough.</strong></p>
+      <p class="note">Why two flours separately? The recipe needs 3 parts white to 1 part whole wheat. If you have little of one, the calculator makes the loaf smaller so neither runs out, and tells you which flour ends first.</p>
+    </details>
   </div>
   <div class="scaler calc" data-formula="wheat">
     <div>
@@ -321,8 +339,8 @@
   <a class="caps" href="../index.html">home →</a>
 </footer>
 </div>
-<script src="../assets/site.js?v=e478d65f"></script>
-<script src="../assets/i18n.js?v=c2ee3a3e"></script>
+<script src="../assets/site.js?v=ed59f9e9"></script>
+<script src="../assets/i18n.js?v=319c0417"></script>
 <script src="../assets/flags.js?v=13633562"></script>
 <script src="../assets/analytics.js?v=9a5e3be8"></script>
 </body>

@@ -507,6 +507,12 @@
 
     /* ---------- recipe: temperature steps + calculator explainer ---------- */
     "recipe calculator": ["kalkulator recepta", "калькулятор рецепта"],
+    "how to use it · 3 steps": ["kako se koristi · 3 koraka", "как пользоваться · 3 шага"],
+    "weigh this": ["izmerite ovo", "взвесьте это"],
+    "temperature": ["temperatura", "температура"],
+    "folds": ["savijanja", "складки"],
+    "shape": ["oblikovanje", "формовка"],
+    "bake": ["pečenje", "выпечка"],
     "what is this?": ["šta je ovo?", "что это?"],
     "A calculator that rewrites this recipe for you. The recipe above is for 600 g and 1150 g of dough. Your bowl, your oven and your bag of flour are different — so type in what you have, and it tells you how many grams of everything to weigh.": ["Kalkulator koji prepravlja ovaj recept za vas. Recept iznad je za 600 g i 1150 g testa. Vaša posuda, vaša rerna i vaša kesa brašna su drugačiji — zato upišite šta imate, a on vam kaže koliko grama čega da izmerite.", "Калькулятор, который пересчитывает этот рецепт под вас. Рецепт выше — на 600 г и 1150 г теста. А у вас своя миска, своя духовка и свой пакет муки — поэтому впишите, что есть, и он скажет, сколько граммов чего взвесить."],
     "Pick how you start.": ["Izaberite od čega polazite.", "Выберите, от чего считать."],
