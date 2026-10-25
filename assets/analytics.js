@@ -3,7 +3,7 @@
    Counts only on the prod domain, never on the mirror, previews or local files.
    Reports: https://<code>.goatcounter.com → Pages (visits) and the "event" rows (actions). */
 (function () {
-  var GC_CODE = '';
+  var GC_CODE = 'grainoftaste';
   var PROD = ['grainoftaste.com', 'www.grainoftaste.com'];
   if (!GC_CODE || PROD.indexOf(location.hostname) < 0) return;
 
