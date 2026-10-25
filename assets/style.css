@@ -394,3 +394,42 @@ table.trouble td:last-child{font-family:var(--serif);font-style:italic;font-size
 .strip{overflow:visible}
 .strip .polaroid{padding-bottom:60px}
 @media(max-width:900px){.strip .polaroid .cap{font-size:17px}}
+
+/* ---------- compact scale (Oct 25): less empty space, smaller display type ---------- */
+:root{--step:16px}
+.site-header{padding:18px 0}
+.site-header .brand{font-size:30px}
+.page-head{padding:10px 0;margin-bottom:calc(var(--step)*1.5)}
+section{margin:calc(var(--step)*2.5) 0}
+.hero{padding:var(--step) 0;align-items:start;gap:calc(var(--step)*2)}
+.hero > .title{font-size:clamp(52px,7.5vw,104px);margin:0}
+.hero .title span{margin-left:.5em}
+.hero > div:last-child{padding-top:12px}
+.lede{font-size:clamp(19px,1.8vw,24px);margin-top:4px}
+.thought{font-size:19px}
+h1.hand{font-size:clamp(44px,6.5vw,80px)}
+h2.hand{font-size:clamp(32px,4.2vw,52px)}
+.plate{padding:18px 22px;gap:6px}
+.plate .num{font-size:44px}
+.plate .caps{font-size:12px}
+.plates{gap:14px}
+.polaroid.w320{width:280px}
+.reply{font-size:32px}
+.step{padding:calc(var(--step)*2) 0;gap:calc(var(--step)*2)}
+.step .head .num{font-size:clamp(72px,9vw,136px)}
+.step .head .hand{font-size:clamp(30px,3.6vw,46px)}
+.video.tall,.clip-tabs{max-width:300px}
+.list li{padding:14px 0;font-size:15px}
+.kit-name{font-size:clamp(26px,3vw,38px)}
+.kit-photos img{max-height:260px}
+.calc-out .big{font-size:clamp(48px,6vw,88px)}
+.cover-card{min-height:360px}
+.cover-card .hook{font-size:26px}
+.hero .steps a{width:60px;height:60px;font-size:24px}
+@media(max-width:600px){.plate .num{font-size:34px}.reply{font-size:26px}}
+.hero{padding-top:0}
+.hero > .title{line-height:.9;margin-top:-6px}
+@media(min-width:821px){.hero .plates{flex-wrap:nowrap}.hero .plates .plate{flex:1 1 0;min-width:0}}
+.plate .num{white-space:nowrap}
+@media(min-width:821px){.hero .plates .plate .num{font-size:36px}.hero .plates .plate{padding:16px 18px}}
+.polaroid.w320 .cap{font-size:27px}
