@@ -195,6 +195,7 @@
       var one = d.total, all = one * n, many = n > 1;
       var unitWord = loaves ? 'g of dough' : 'g';
       var html = '<div class="big num">' + all + ' <span class="caps" style="font-size:15px">' + unitWord + '</span></div>';
+      if (loaves) html += '<p class="note baked">≈ <span class="num">' + Math.round(one * 0.85) + '</span> <span>g of baked bread per loaf, approx.</span></p>';
       if (many) html += '<p class="caps calc-split"><span class="num">' + n + '</span> × <span class="num">' + one + ' g</span></p>';
       html += '<table class="t"><tr><th>ingredient</th>' + (many ? '<th class="r">1 loaf</th><th class="r">total</th>' : '<th class="r">grams</th>') + '</tr>';
       rows.forEach(function (row) {

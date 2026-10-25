@@ -13,7 +13,7 @@ def serve(route):
 JS="""() => { const out=[]; const tw=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT);
  let n; while(n=tw.nextNode()){ const p=n.parentNode.nodeName; if(p=='SCRIPT'||p=='STYLE')continue; if(n.parentNode.closest('.watermark'))continue;
  const t=n.nodeValue.replace(/\\s+/g,' ').trim(); if(t && /[A-Za-z]{3}/.test(t) && !t.includes('‹') && (n.__en===undefined || n.nodeValue===n.__en)) out.push(t);} return [...new Set(out)]; }"""
-SKIP={'kcal','grain of taste','@grain_of_taste','BreadVenture','grain','of taste','instagram →','doi','video','Svetlana','30 min','lievito madre'}
+SKIP={'kcal','problem','grain of taste','@grain_of_taste','BreadVenture','grain','of taste','instagram →','doi','video','Svetlana','30 min','lievito madre'}
 pages=[str(p.relative_to(ROOT)) for p in sorted(ROOT.rglob('*.html')) if 'tools' not in p.parts]
 with sync_playwright() as pw:
     b=pw.chromium.launch(); bad=0

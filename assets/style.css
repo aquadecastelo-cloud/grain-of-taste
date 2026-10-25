@@ -359,3 +359,25 @@ table.t tr.sum td:first-child{font-family:var(--mono);text-transform:uppercase;l
   body.print-calc .print-foot{margin-top:12mm}
   body.print-calc{background:var(--paper)!important;color:var(--ink)!important;--fg:var(--ink);--rule:var(--ink);--accent:var(--red)}
 }
+
+/* home: audience line + author block */
+.lede{font-family:var(--hook);font-weight:900;font-size:clamp(22px,2.4vw,30px);line-height:1.12;letter-spacing:-.02em;margin:24px 0 0;max-width:30em;text-wrap:balance}
+.author-row{display:grid;grid-template-columns:auto 1fr;gap:calc(var(--step)*2.5);align-items:center}
+@media(max-width:700px){.author-row{grid-template-columns:1fr;justify-items:start}}
+/* recipe: troubleshooting table */
+.tscroll{overflow-x:auto}
+table.trouble td:first-child{font-weight:500;width:38%;padding-right:20px}
+table.trouble td:last-child{font-family:var(--serif);font-style:italic;font-size:18px}
+.note.baked{margin:-4px 0 12px}
+.calc-explain .note strong{font-weight:400;font-style:normal;font-family:var(--mono);font-size:14px;color:var(--fg)}
+
+/* about: bakery gallery — polaroids in columns */
+.gallery{columns:3 240px;column-gap:34px;padding:10px 6px}
+.gallery .polaroid{display:block;width:100%;break-inside:avoid;margin:0 0 38px;transform:rotate(var(--t,0deg));padding:14px 14px 62px}
+.gallery .polaroid .ph{aspect-ratio:auto;height:auto}
+.gallery .polaroid .cap{font-size:26px;bottom:16px;height:auto}
+@media(max-width:600px){.gallery{columns:2 140px;column-gap:18px}.gallery .polaroid{padding:8px 8px 44px}.gallery .polaroid .cap{font-size:19px;bottom:10px}}
+@media print{.gallery-sec{display:none}}
+.calc-out .big{line-height:1.05;margin-bottom:10px}
+.note.baked{margin:6px 0 12px}
+@media(max-width:600px){.gallery .polaroid{padding-bottom:58px}.gallery .polaroid .cap{font-size:17px;line-height:1;bottom:8px;left:6px;right:6px}}

@@ -7,7 +7,7 @@
 <meta name="description" content="Wheat sourdough on stiff starter (lievito madre 43%): 75% hydration, 25% whole wheat, 2% salt. Grams for two loaf sizes, a scaler, and a video for every step.">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Playfair+Display:ital@1&family=JetBrains+Mono:wght@400;500&family=Golos+Text:wght@900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../assets/style.css?v=8cf727f9">
+<link rel="stylesheet" href="../assets/style.css?v=3eacf6e0">
 </head>
 <body class="yellow">
 <div class="wrap">
@@ -78,7 +78,7 @@
   <div class="two">
     <div>
       <h2 class="hand tilt">what goes in</h2>
-      <!-- table is generated from the formula in assets/site.js?v=5e462c61 (hydration 75, salt 2, ww 25, pff 14.7) -->
+      <!-- table is generated from the formula in assets/site.js?v=e478d65f (hydration 75, salt 2, ww 25, pff 14.7) -->
       <div data-recipe-table="wheat" data-sizes="600,1150" data-starter="stiff"></div>
       <p class="note" style="margin-top:14px">Starter 43% = 21% of the flour. Inside it: 50 g flour + 21 g water (600 g loaf), 96 g flour + 41 g water (1150 g loaf).</p>
       <h3 class="hand" style="font-size:34px;margin:26px 0 10px">liquid starter 100%?</h3>
@@ -111,6 +111,7 @@
       <li><b>2</b><span><strong>Say how many loaves</strong> and which starter you have: stiff (43%) or liquid (100%).</span></li>
       <li><b>3</b><span><strong>Weigh exactly the grams on the right.</strong> Every number keeps the recipe's proportions, so the bread turns out the same as mine — just bigger or smaller.</span></li>
     </ol>
+    <p class="note"><strong>Dough or bread? All weights in the calculator are dough. In the oven a loaf loses about 12–18% of its water: 600 g of dough → about 510 g of bread, 1150 g → about 980 g. Want 600 g of baked bread? Type about 700 g of dough.</strong></p>
     <p class="note">Why two flours separately? The recipe needs 3 parts white to 1 part whole wheat. If you have little of one, the calculator makes the loaf smaller so neither runs out, and tells you which flour ends first.</p>
   </div>
   <div class="scaler calc" data-formula="wheat">
@@ -122,7 +123,7 @@
           <label><input type="radio" name="mode-recipe" value="dough"><span>dough I want</span></label>
         </div>
       </div>
-      <div class="field" data-when="dough"><label class="caps" for="r-amt">one loaf weighs, g</label><input id="r-amt" name="amount" type="number" min="50" step="10" value="1150" inputmode="numeric"><div class="presets"><button type="button" class="btn small" data-set="600"><span>small loaf</span> · 600 g</button><button type="button" class="btn small" data-set="1150"><span>big loaf</span> · 1150 g</button></div></div>
+      <div class="field" data-when="dough"><label class="caps" for="r-amt">one loaf of dough weighs, g</label><input id="r-amt" name="amount" type="number" min="50" step="10" value="1150" inputmode="numeric"><div class="presets"><button type="button" class="btn small" data-set="600"><span>small loaf</span> · 600 g</button><button type="button" class="btn small" data-set="1150"><span>big loaf</span> · 1150 g</button></div></div>
       <div class="field" data-when="flour"><label class="caps" for="r-hw">white bread flour I have, g</label><input id="r-hw" name="have-white" type="number" min="0" step="10" value="500" inputmode="numeric"></div>
       <div class="field" data-when="flour" data-ww><label class="caps" for="r-hz">whole wheat flour I have, g</label><input id="r-hz" name="have-ww" type="number" min="0" step="10" value="200" inputmode="numeric"></div>
       <div class="field"><label class="caps" for="lv">how many loaves</label><input id="lv" name="loaves" type="number" min="1" max="12" step="1" value="1" inputmode="numeric"></div>
@@ -164,9 +165,9 @@
       <li><b>a</b>Salt in. Now knead properly.</li>
       <li><b>b</b>Taste from two spots. One bland, one salty? Keep kneading.</li>
       <li><b>c</b>At the end, measure the dough temperature. Mine was 27 °C.</li>
-      <li><b>d</b>Above 26 °C the dough needs cooling down to the comfortable fermentation corridor of 23–25 °C. I put it in the fridge for 30 min.</li>
+      <li><b>d</b>In this recipe my working range is 23–25 °C. Above 26 °C fermentation in my process runs ahead of the gluten, so I cool the dough — 30 min in the fridge.</li>
     </ol>
-    <div class="plates"><div class="plate"><span class="num">2%</span><span class="caps">salt of flour</span></div><div class="plate accent"><span class="num">26°</span><span class="caps">max dough temp</span></div><div class="plate"><span class="num">23–25°</span><span class="caps">fermentation corridor</span></div></div>
+    <div class="plates"><div class="plate"><span class="num">2%</span><span class="caps">salt of flour</span></div><div class="plate accent"><span class="num">26°</span><span class="caps">above it — cool down</span></div><div class="plate"><span class="num">23–25°</span><span class="caps">my working range</span></div></div>
     <p class="reply">dough too warm? use cold water next time</p>
   </div>
   <div class="side">
@@ -182,7 +183,7 @@
       <li><b>b</b>Next fold: wet hands, stretch one side up and fold it over, turn the bowl, repeat on all four sides.</li>
       <li><b>c</b>Cover and leave for 30 min until the next fold.</li>
     </ol>
-    <div class="plates"><div class="plate accent"><span class="num">25°</span><span class="caps">after the fridge</span></div><div class="plate"><span class="num">23–25°</span><span class="caps">fermentation corridor</span></div></div>
+    <div class="plates"><div class="plate accent"><span class="num">25°</span><span class="caps">after the fridge</span></div><div class="plate"><span class="num">23–25°</span><span class="caps">my working range</span></div></div>
     <p class="reply">a calm dough, right on track</p>
   </div>
   <div class="side">
@@ -214,8 +215,9 @@
       <li><b>a</b>Preshape: round it, tightening the top. Rest 20–30 min.</li>
       <li><b>b</b>Final shape: I do folds and swaddling. Any method you like works.</li>
       <li><b>c</b>Another 20–30 min proof, then into the fridge overnight, covered.</li>
+      <li><b>d</b>My fridge is about 7 °C. At that temperature fermentation keeps going, so the overnight timing is for my fridge and this process: in a colder fridge the dough can stay longer, in a warmer one bake it earlier.</li>
     </ol>
-    <div class="plates"><div class="plate"><span class="num">20–30</span><span class="caps">min rest · ×2</span></div><div class="plate accent"><span class="num">~7°</span><span class="caps">fridge, overnight</span></div></div>
+    <div class="plates"><div class="plate"><span class="num">20–30</span><span class="caps">min rest · ×2</span></div><div class="plate accent"><span class="num">~7°</span><span class="caps">my fridge, overnight</span></div></div>
     <p class="reply">tension on top, not force</p>
   </div>
   <div class="side">
@@ -252,8 +254,20 @@
   <p class="note" style="margin-top:14px">Timing is approximate. A liquid starter may run a little faster or slower than lievito madre.</p>
 </section>
 
+<section id="troubleshooting">
+  <div class="page-head"><span class="caps">troubleshooting</span><span class="caps">if something went wrong</span></div>
+  <div class="tscroll"><table class="t trouble">
+      <tr><th>problem</th><th>possible cause</th></tr>
+      <tr><td>The loaf spread flat</td><td>Not enough structure developed, or overproofed</td></tr>
+      <tr><td>Dense crumb</td><td>Underfermented</td></tr>
+      <tr><td>Too sour</td><td>Starter ripeness and how the fermentation went</td></tr>
+      <tr><td>Crust too thick</td><td>Baking mode and moisture loss</td></tr>
+      <tr><td>The loaf barely opened</td><td>Shaping, proofing or scoring</td></tr>
+  </table></div>
+</section>
+
 <section class="nutrition" id="nutrition">
-  <div class="page-head"><span class="caps">nutrition</span><span class="caps">per 100 g of bread</span></div>
+  <div class="page-head"><span class="caps">nutrition</span><span class="caps">approximate, per 100 g of bread</span></div>
   <div class="plates">
     <div class="plate accent"><span class="num">228</span><span class="caps">kcal</span></div>
     <div class="plate"><span class="num">8.4 g</span><span class="caps">protein</span></div>
@@ -300,8 +314,8 @@
   <a class="caps" href="../index.html">home →</a>
 </footer>
 </div>
-<script src="../assets/site.js?v=5e462c61"></script>
-<script src="../assets/i18n.js?v=469ca457"></script>
+<script src="../assets/site.js?v=e478d65f"></script>
+<script src="../assets/i18n.js?v=f9f51b0a"></script>
 <script src="../assets/flags.js?v=c4b27a1a"></script>
 </body>
 </html>
