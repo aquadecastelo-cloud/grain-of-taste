@@ -266,10 +266,10 @@
 
 /* ---------- mirror (dev) marker ----------
    Prod = branch main, the address followers see. Mirror = branch dev, address starting with "dev."
-   (e.g. dev.grain-of-taste.pages.dev). On the mirror: a red DEV bar on top and noindex for search engines. */
+   (dev.grainoftaste.com or grain-of-taste.pages.dev). On the mirror: a red DEV bar on top and noindex for search engines. */
 (function () {
   var h = location.hostname;
-  var isMirror = /^dev\./.test(h) || /^[0-9a-f]{6,}\./.test(h);
+  var isMirror = /^dev\./.test(h) || /^[0-9a-f]{6,}\./.test(h) || /\.pages\.dev$/.test(h);
   if (!isMirror) return;
   var m = document.createElement('meta'); m.name = 'robots'; m.content = 'noindex, nofollow'; document.head.appendChild(m);
   var bar = document.createElement('div');
