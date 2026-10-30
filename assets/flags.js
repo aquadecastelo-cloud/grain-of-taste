@@ -5,9 +5,10 @@
 (function () {
   var RELEASED = {
     starters: false,
-    science: false,
+    science: true,
     myths: false,
-    calculator: true
+    calculator: true,
+    templates: false   /* blank templates, never on prod */
   };
   var PROD_HOSTS = ['grainoftaste.com', 'www.grainoftaste.com', 'aquadecastelo-cloud.github.io'];
 
@@ -15,7 +16,8 @@
     starters: /\/recipes\/(stiff-starter-43|liquid-starter-100)\.html$/,
     science: /\/science\/[^/]*$/,
     myths: /\/myths\/[^/]*$/,
-    calculator: /\/calculator\.html$/
+    calculator: /\/calculator\.html$/,
+    templates: /\/(science\/2026-10-24-paper-review|myths\/myth-template)\.html$/
   };
   var isProd = PROD_HOSTS.indexOf(location.hostname) > -1 || window.GOT_AS_PROD === true;  /* PDF builder renders as prod */
   function hiddenSection(path) {
