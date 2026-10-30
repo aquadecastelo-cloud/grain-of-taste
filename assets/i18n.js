@@ -24,6 +24,9 @@
     "read": ["čitaj", "читать"],
 
     /* ---------- science: sourdough vs fusarium (wk 44) ---------- */
+    "30 oct 2026": ["30. okt 2026", "30 окт. 2026"],
+    "science · 30 oct": ["nauka · 30. okt", "наука · 30 окт."],
+    "recipes · 25 oct": ["recepti · 25. okt", "рецепты · 25 окт."],
     "fermentation at work": ["fermentacija u toku", "ферментация в процессе"],
     "open crumb": ["otvorena sredina", "открытый мякиш"],
     "science you can eat": ["nauka koja se jede", "наука, которую можно съесть"],
