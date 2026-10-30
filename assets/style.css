@@ -606,3 +606,26 @@ h2.hand{font-size:clamp(32px,4.2vw,52px)}
   .gallery .polaroid.big .cap{font-size:24px;bottom:14px}
 }
 @media(min-width:601px) and (max-width:900px){.gallery .polaroid .cap{font-size:19px}.gallery .polaroid .ph{height:calc(100% - 80px)}}
+
+/* science article photos */
+.sci-wide{display:block;width:100%;margin:28px 0 6px;padding:14px 14px 64px}
+.sci-wide .ph{aspect-ratio:2/1}
+.sci-wide .cap{font-size:30px;height:64px}
+.sci-ai{margin:0 0 10px;font-size:11px;opacity:.7}
+.sci-row{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px;margin:30px 0 10px;padding:6px}
+.sci-row.two{grid-template-columns:repeat(2,minmax(0,1fr));max-width:560px}
+.sci-row .polaroid{width:100%;margin:0;padding:10px 10px 54px;transform:rotate(var(--t,0deg))}
+.sci-row .polaroid .ph{aspect-ratio:4/5}
+.sci-row .polaroid .cap{font-size:21px;height:54px;line-height:1;left:6px;right:6px}
+@media(max-width:600px){.sci-row{gap:12px}.sci-row .polaroid{padding:6px 6px 44px;transform:none}.sci-row .polaroid .cap{font-size:15px;height:44px}.sci-wide .cap{font-size:22px}}
+
+.sci-head{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:calc(var(--step)*3);align-items:start;margin-bottom:calc(var(--step)*1.5)}
+.sci-head-text{max-width:720px;font-size:17px;line-height:1.6}
+.sci-head-text .ref{border-left:2px solid var(--rule);padding:4px 0 4px 18px;margin:var(--step) 0;font-size:15px}
+.sci-head-text .verdict{display:grid;grid-template-columns:auto 1fr;gap:18px;align-items:center;background:var(--paper);color:var(--ink);padding:22px;box-shadow:0 10px 26px rgba(43,42,38,.12);margin:calc(var(--step)*1.5) 0}
+.sci-head-text .verdict .num{font-size:44px}
+.sci-head-video{padding-top:24px}
+.sci-head-video .video{max-width:340px}
+.sci-below{font-size:40px;color:var(--red);text-align:center;margin:14px 0 0;transform:rotate(-2deg)}
+@media(max-width:900px){.sci-head{grid-template-columns:1fr}.sci-head-video{padding-top:0;justify-self:center;width:min(100%,380px)}.sci-head-video .video{max-width:100%}}
+.sci-head-text .ref .caps{display:block;margin-bottom:4px}

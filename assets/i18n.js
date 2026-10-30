@@ -24,6 +24,14 @@
     "read": ["čitaj", "читать"],
 
     /* ---------- science: sourdough vs fusarium (wk 44) ---------- */
+    "full paper review below ↓": ["ceo pregled rada ispod ↓", "полный обзор статьи ниже ↓"],
+    "invisible on real bread": ["na pravom hlebu nevidljivo", "на настоящем хлебе не видно"],
+    "illustration · AI-generated": ["ilustracija · generisano veštačkom inteligencijom", "иллюстрация · создана ИИ"],
+    "where the bacteria live": ["ovde žive bakterije", "здесь живут бактерии"],
+    "wholegrain crumb": ["integralna sredina", "цельнозерновой мякиш"],
+    "fermented slowly": ["sporo fermentisano", "долгая ферментация"],
+    "from my bakery": ["iz moje pekare", "из моей пекарни"],
+    "AI illustration": ["AI ilustracija", "иллюстрация ИИ"],
     "can sourdough bacteria fight a fungal toxin?": ["mogu li bakterije iz kiselog testa da se izbore sa gljivičnim toksinom?", "могут ли бактерии закваски победить грибковый токсин?"],
     "Perri G., Sardella C., Ciraldo L., Scarpino V., Carbone S., Rametta F., Blandino M., Rizzello C.G., Pontonio E. (2026). In Situ Fusarium Mycotoxin Mitigation During Wholegrain Wheat Flour Fermentation with Sourdough Lactic Acid Bacteria. Foods 15(19), 3543. ·": ["Perri G., Sardella C., Ciraldo L., Scarpino V., Carbone S., Rametta F., Blandino M., Rizzello C.G., Pontonio E. (2026). In Situ Fusarium Mycotoxin Mitigation During Wholegrain Wheat Flour Fermentation with Sourdough Lactic Acid Bacteria. Foods 15(19), 3543. ·", "Perri G., Sardella C., Ciraldo L., Scarpino V., Carbone S., Rametta F., Blandino M., Rizzello C.G., Pontonio E. (2026). In Situ Fusarium Mycotoxin Mitigation During Wholegrain Wheat Flour Fermentation with Sourdough Lactic Acid Bacteria. Foods 15(19), 3543. ·"],
     "open access": ["otvoren pristup", "открытый доступ"],
