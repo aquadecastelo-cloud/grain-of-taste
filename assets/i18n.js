@@ -24,6 +24,9 @@
     "read": ["čitaj", "читать"],
 
     /* ---------- science: sourdough vs fusarium (wk 44) ---------- */
+    "fermentation at work": ["fermentacija u toku", "ферментация в процессе"],
+    "open crumb": ["otvorena sredina", "открытый мякиш"],
+    "science you can eat": ["nauka koja se jede", "наука, которую можно съесть"],
     "full paper review below ↓": ["ceo pregled rada ispod ↓", "полный обзор статьи ниже ↓"],
     "invisible on real bread": ["na pravom hlebu nevidljivo", "на настоящем хлебе не видно"],
     "illustration · AI-generated": ["ilustracija · generisano veštačkom inteligencijom", "иллюстрация · создана ИИ"],
