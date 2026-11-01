@@ -46,6 +46,11 @@
     if (e.target.matches && e.target.matches('.kit-check input') && e.target.checked) countOnce('kit' + page, 'kit-checklist' + page, 'Kit checklist used');
   }, true);
 
+  /* where people came from: links like ?ref=ig-story (Instagram's in-app browser hides the referrer,
+     so every link we post carries its own label). Shows up as an event "from/ig-story/recipes/rye-tin-loaf". */
+  var q = new URLSearchParams(location.search), src = q.get('ref') || q.get('utm_source');
+  if (src) countOnce('from', 'from/' + src.toLowerCase().replace(/[^a-z0-9_-]/g, '') + page, 'Came from: ' + src + (q.get('utm_campaign') ? ' · ' + q.get('utm_campaign') : ''));
+
   /* first-visit language the site picked (what visitors actually read in) */
   countOnce('lang', 'reading-language/' + lang(), 'Reading in ' + lang());
 })();
