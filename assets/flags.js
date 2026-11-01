@@ -8,7 +8,7 @@
     science: true,
     myths: false,
     calculator: true,
-    rye: false,       /* rye tin loaf recipe */
+    rye: true,        /* rye tin loaf recipe */
     templates: false   /* blank templates, never on prod */
   };
   var PROD_HOSTS = ['grainoftaste.com', 'www.grainoftaste.com', 'aquadecastelo-cloud.github.io'];
