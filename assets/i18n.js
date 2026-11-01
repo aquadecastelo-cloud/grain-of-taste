@@ -189,6 +189,8 @@
     "40% starter · same day": ["40% kiselog testa · isti dan", "закваска 40% · в тот же день"],
     "20% starter · overnight": ["20% kiselog testa · preko noći", "закваска 20% · на ночь"],
     "70% starter · more sour": ["70% kiselog testa · kiseliji", "закваска 70% · кислее"],
+    "me & my rye": ["ja i moj raženi", "я и мой ржаной"],
+    "Svetlana with the rye tin loaf": ["Svetlana sa raženim hlebom iz kalupa", "Светлана с ржаным формовым"],
     /* ---------- science: sourdough vs fusarium (wk 44) ---------- */
     "30 oct 2026": ["30. okt 2026", "30 окт. 2026"],
     "science · 30 oct": ["nauka · 30. okt", "наука · 30 окт."],
