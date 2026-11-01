@@ -8,6 +8,7 @@
     science: true,
     myths: false,
     calculator: true,
+    rye: false,       /* rye tin loaf recipe */
     templates: false   /* blank templates, never on prod */
   };
   var PROD_HOSTS = ['grainoftaste.com', 'www.grainoftaste.com', 'aquadecastelo-cloud.github.io'];
@@ -17,6 +18,7 @@
     science: /\/science\/[^/]*$/,
     myths: /\/myths\/[^/]*$/,
     calculator: /\/calculator\.html$/,
+    rye: /\/recipes\/rye-tin-loaf\.html$/,
     templates: /\/(science\/2026-10-24-paper-review|myths\/myth-template)\.html$/
   };
   var isProd = PROD_HOSTS.indexOf(location.hostname) > -1 || window.GOT_AS_PROD === true;  /* PDF builder renders as prod */
