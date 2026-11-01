@@ -56,10 +56,11 @@
   </div>
 </section>
 
-<!-- ===== sticky step navigation (assets/site.js?v=3bee88e0) ===== -->
+<!-- ===== sticky step navigation (assets/site.js?v=b93f59a7) ===== -->
 <nav class="step-nav no-pdf" aria-label="recipe steps">
   <div class="in">
     <a href="#ingredients" class="sn-extra"><span>ingredients</span></a>
+    <a href="#calculator" class="sn-extra"><span>calculator</span></a>
     <a href="#reel" class="sn-extra"><span>the reel</span></a>
     <a href="#s1"><b>1</b><span>mix</span></a>
     <a href="#s2"><b>2</b><span>salt</span></a>
@@ -117,6 +118,36 @@
       <figure class="polaroid r w240" style="margin:0 auto"><img class="ph" src="../photos/rye/bowl.jpg" alt="rye dough in a bowl after mixing"><figcaption class="cap">sticky is normal</figcaption></figure>
     </div>
   </div>
+</section>
+
+<!-- ===== scaler ===== -->
+<section class="no-pdf calc-band" id="calculator">
+  <div class="page-head"><span class="caps">recipe calculator</span><span class="caps">your flour, your tin</span></div>
+  <div class="calc-explain">
+    <h2 class="hand tilt">what is this?</h2>
+    <p class="thought">A calculator that rewrites this recipe for you. Pick the version — same day (40% starter), overnight (20%) or more sour (70%) — then type in the flour you have or the dough you want, and it tells you how many grams of everything to weigh.</p>
+    <p class="note"><strong>All weights are dough. In the oven a loaf loses some water: 1150 g of dough → about 1000 g of bread.</strong> The starter is rye, 100%: feed it separately, its flour and water are already counted.</p>
+  </div>
+  <div class="scaler calc" id="rye-scaler" data-formula="rye40">
+    <div>
+      <h2 class="hand tilt">how much do you have?</h2>
+      <div class="field"><label class="caps" for="ry-rec">version</label><select id="ry-rec" name="recipe" data-group="rye"></select></div>
+      <div class="field"><span class="caps">start from</span>
+        <div class="seg">
+          <label><input type="radio" name="mode-rye" value="flour"><span>flour I have</span></label>
+          <label><input type="radio" name="mode-rye" value="dough" checked><span>dough I want</span></label>
+        </div>
+      </div>
+      <div class="field" data-when="dough"><label class="caps" for="ry-amt">one loaf of dough weighs, g</label><input id="ry-amt" name="amount" type="number" min="50" step="10" value="1150" inputmode="numeric"><div class="presets"><button type="button" class="btn small" data-set="600"><span>small loaf</span> · 600 g</button><button type="button" class="btn small" data-set="1150"><span>big loaf</span> · 1150 g</button></div></div>
+      <div class="field" data-when="flour"><label class="caps" for="ry-hw">white bread flour I have, g</label><input id="ry-hw" name="have-white" type="number" min="0" step="10" value="500" inputmode="numeric"></div>
+      <div class="field" data-when="flour" data-ww><label class="caps" for="ry-hz">whole wheat flour I have, g</label><input id="ry-hz" name="have-ww" type="number" min="0" step="10" value="200" inputmode="numeric"></div>
+      <div class="field" data-when="flour" data-rye><label class="caps" for="ry-hr">rye flour I have, g</label><input id="ry-hr" name="have-rye" type="number" min="0" step="10" value="200" inputmode="numeric"></div>
+      <div class="field"><label class="caps" for="ry-lv">how many loaves</label><input id="ry-lv" name="loaves" type="number" min="1" max="12" step="1" value="1" inputmode="numeric"></div>
+      <p class="note" data-rye-starter-note hidden>Starter: rye, 100% (equal rye flour and water). The rye inside it is already counted in the recipe.</p>
+    </div>
+    <div class="calc-out"></div>
+  </div>
+  <p data-needs="calculator" style="margin-top:20px"><a class="caps arrow" href="../calculator.html">open the full calculator</a></p>
 </section>
 
 <!-- ===== the reel ===== -->
@@ -369,9 +400,9 @@
   <a class="caps" href="../index.html">home →</a>
 </footer>
 </div>
-<script src="../assets/site.js?v=3bee88e0"></script>
-<script src="../assets/i18n.js?v=c12eec57"></script>
-<script src="../assets/flags.js?v=aabb6227"></script>
+<script src="../assets/site.js?v=b93f59a7"></script>
+<script src="../assets/i18n.js?v=c69eb1b2"></script>
+<script src="../assets/flags.js?v=8a538453"></script>
 <script src="../assets/analytics.js?v=9a5e3be8"></script>
 </body>
 </html>

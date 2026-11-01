@@ -80,6 +80,11 @@
     /* bread recipes — type 'bread' shows up in the calculator's recipe list.
        To add one: copy the line, give it a new key, name, numbers and the page it links to. */
     wheat: { type: 'bread', name: 'wheat sourdough', page: 'recipes/wheat-sourdough.html', hydration: 75, salt: 2, ww: 25, pff: 14.7 },
+    /* rye tin loaf: rye / whole wheat / white = 35 / 15 / 50, rye starter 100% made of rye flour.
+       pff = flour inside the starter as % of all flour (starter weight = 2 × pff). group = which recipe page lists it. */
+    rye40: { type: 'bread', group: 'rye', flag: 'rye', short: '40% starter · same day', name: 'rye tin loaf · 40% starter · same day', page: 'recipes/rye-tin-loaf.html', hydration: 75, salt: 2, rye: 35, ww: 15, pff: 20 },
+    rye20: { type: 'bread', group: 'rye', flag: 'rye', short: '20% starter · overnight', name: 'rye tin loaf · 20% starter · overnight', page: 'recipes/rye-tin-loaf.html#overnight', hydration: 75, salt: 2, rye: 35, ww: 15, pff: 10 },
+    rye70: { type: 'bread', group: 'rye', flag: 'rye', short: '70% starter · more sour', name: 'rye tin loaf · 70% starter · more sour', page: 'recipes/rye-tin-loaf.html#more-sour', hydration: 75, salt: 2, rye: 35, ww: 15, pff: 35 },
     stiff: { name: 'stiff starter · 43%', hydration: 43, salt: 0, ww: 0, pff: 0 },
     liquid: { name: 'liquid starter · 100%', hydration: 100, salt: 0, ww: 0, pff: 0 }
   };
@@ -90,6 +95,15 @@
      then water — so 600 g gives 71/85/204/233/7 and 1150 g gives 137/163/391/446/13,
      and the liquid swap gives 100/204 and 192/391, exactly as in the recipe. */
   function compute(f, F, starterType) {
+    if (f.rye) {
+      /* rye: rounds like the written recipe — 600 g → 136/51/51/169/186/7, 1150 g → 260/98/97/325/357/13 */
+      F = Math.round(F);
+      var ryeAll = Math.round(F * f.rye / 100), wh = Math.floor(F * (100 - f.rye - f.ww) / 100), w2 = F - ryeAll - wh;
+      var pf = Math.min(ryeAll, Math.round(F * f.pff / 100)), waterAll = Math.floor(F * f.hydration / 100), sl = Math.round(F * f.salt / 100);
+      var o = { flour: F, starter: 2 * pf, rye: ryeAll - pf, ww: w2, white: wh, water: waterAll - pf, salt: sl, sh: 100, pffFlour: pf, pffWater: pf, ryeStarter: true };
+      o.total = o.starter + o.rye + o.ww + o.white + o.water + o.salt;
+      return o;
+    }
     var sh = starterType === 'liquid' ? 100 : 43;
     F = Math.round(F);
     var ww = Math.round(F * f.ww / 100);
@@ -138,12 +152,17 @@
   document.querySelectorAll('.scaler').forEach(function (root) {
     var f = FORMULAS[root.getAttribute('data-formula')] || FORMULAS.wheat;
     var pick = root.querySelector('[name=recipe]');
-    function spec(x) { return x.hydration + '% · ' + (x.ww ? x.ww + '% whole wheat · ' : '') + x.salt + '% salt'; }
+    function spec(x) { return x.hydration + '% · ' + (x.rye ? x.rye + '% rye · ' : '') + (x.ww ? x.ww + '% whole wheat · ' : '') + x.salt + '% salt'; }
     if (pick) {
-      pick.innerHTML = Object.keys(FORMULAS).filter(function (k) { return FORMULAS[k].type === 'bread'; })
-        .map(function (k) { return '<option value="' + k + '">' + FORMULAS[k].name + '</option>'; }).join('');
+      var group = pick.getAttribute('data-group');
+      pick.innerHTML = Object.keys(FORMULAS).filter(function (k) { return FORMULAS[k].type === 'bread' && (!group || FORMULAS[k].group === group); })
+        .map(function (k) { return '<option value="' + k + '"' + (FORMULAS[k].flag ? ' data-flag="' + FORMULAS[k].flag + '"' : '') + '>' + (group && FORMULAS[k].short || FORMULAS[k].name) + '</option>'; }).join('');
+      if (FORMULAS[root.getAttribute('data-formula')] && pick.querySelector('option[value="' + root.getAttribute('data-formula') + '"]')) pick.value = root.getAttribute('data-formula');
       var syncRecipe = function () {
         f = FORMULAS[pick.value];
+        /* rye recipes: rye starter only, and a rye-flour stock field */
+        var stF = root.querySelector('[name=starter]'); if (stF) stF.closest('.field').hidden = !!f.rye;
+        var rn = root.querySelector('[data-rye-starter-note]'); if (rn) rn.hidden = !f.rye;
         var sp = document.querySelector('[data-spec-for="' + root.id + '"]'); if (sp) { sp.textContent = spec(f); if (window.gotI18n) window.gotI18n.apply(sp.parentNode); }
         var ln = root.querySelector('[data-recipe-link]'); if (ln) ln.setAttribute('href', f.page);
       };
@@ -161,12 +180,24 @@
       var hasStock = !!root.querySelector('[name="have-white"]');
       var k = 1 + f.hydration / 100 + f.salt / 100;          /* dough weight = flour × k */
       root.querySelectorAll('[data-when]').forEach(function (el) {
-        el.hidden = el.getAttribute('data-when') !== m || (el.hasAttribute('data-ww') && !f.ww);
+        el.hidden = el.getAttribute('data-when') !== m || (el.hasAttribute('data-ww') && !f.ww) || (el.hasAttribute('data-rye') && !(f.rye && f.rye > f.pff));
       });
       /* F1 = flour in ONE loaf. Totals are always exactly n × one loaf, so the columns agree. */
       var F1, stockNote = '';
       if (m === 'dough') {
         F1 = (val('amount') || 0) / k;                       /* the field is the weight of one loaf */
+      } else if (hasStock && f.rye) {
+        /* rye: white, whole wheat and the rye that goes into the dough (the starter is fed separately) */
+        var stocks = [['white', 'white bread flour', val('have-white') || 0, (100 - f.rye - f.ww) / 100],
+                      ['ww', 'whole wheat flour', val('have-ww') || 0, f.ww / 100]];
+        if (f.rye > f.pff) stocks.push(['rye', 'rye flour', val('have-rye') || 0, (f.rye - f.pff) / 100]);
+        var lim = stocks.map(function (x) { return x[2] / x[3]; }), minI = lim.indexOf(Math.min.apply(null, lim));
+        F1 = Math.floor(lim[minI] / n);
+        while (F1 > 0) { var t2 = compute(f, F1, st); if (stocks.every(function (x) { return t2[x[0]] * n <= x[2]; })) break; F1--; }
+        var d1 = compute(f, F1, st);
+        stockNote = '<p class="note stock-note"><span>runs out first:</span> <b>' + stocks[minI][1] + '</b><br>'
+          + stocks.filter(function (x, i) { return i !== minI; }).map(function (x) { return '<span>left over:</span> <b>' + r(x[2] - d1[x[0]] * n) + ' g</b> <span>' + x[1] + '</span>'; }).join('<br>')
+          + '<br><span>starter not included — feed it separately.</span></p>';
       } else if (hasStock) {
         /* flour I have, per flour: the biggest loaves both stocks allow at the recipe's ratio.
            The starter's own flour is not taken from these stocks — the starter is fed separately. */
@@ -187,7 +218,8 @@
       }
       var d = compute(f, F1, st);
       var rows = [];
-      if (f.pff > 0) rows.push(['starter · ' + d.sh + '%', d.starter]);
+      if (f.pff > 0) rows.push([(d.ryeStarter ? 'rye starter · ' : 'starter · ') + d.sh + '%', d.starter]);
+      if (d.ryeStarter && d.rye > 0) rows.push(['rye flour', d.rye]);
       if (f.ww > 0) rows.push(['whole wheat flour', d.ww]);
       rows.push([f.ww > 0 ? 'white bread flour' : 'flour', d.white]);
       rows.push(['water', d.water]);
@@ -204,7 +236,7 @@
       });
       html += '<tr class="sum"><td>' + (loaves ? 'total dough' : 'total') + '</td>' + (many ? '<td class="r num">' + one + ' g</td>' : '') + '<td class="r num">' + all + ' g</td></tr></table></div>';
       html += stockNote;
-      html += '<p class="note"><span>flour in total (100%):</span> <span>' + d.flour * n + ' g</span><br><span>hydration ' + f.hydration + '% · salt ' + f.salt + '%' + (f.ww ? ' · whole wheat ' + f.ww + '%' : '') + (f.pff ? ' · prefermented flour ' + f.pff + '%' : '') + '. Rounded to the gram — your scale does the same.</span></p>';
+      html += '<p class="note"><span>flour in total (100%):</span> <span>' + d.flour * n + ' g</span><br><span>hydration ' + f.hydration + '% · salt ' + f.salt + '%' + (f.rye ? ' · rye ' + f.rye + '%' : '') + (f.ww ? ' · whole wheat ' + f.ww + '%' : '') + (f.pff ? ' · prefermented flour ' + f.pff + '%' : '') + '. Rounded to the gram — your scale does the same.</span></p>';
       html += '<p class="calc-actions"><button type="button" class="btn small calc-print">print / save PDF</button></p>';
       out.innerHTML = html;
       out.querySelector('.calc-print').addEventListener('click', function () { printSheet(root, f, n, one, st); });

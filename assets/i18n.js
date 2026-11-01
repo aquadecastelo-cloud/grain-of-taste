@@ -175,6 +175,20 @@
     "all recipes": ["svi recepti", "все рецепты"],
     "all recipes · newest on top →": ["svi recepti · najnoviji na vrhu →", "все рецепты · новый наверху →"],
 
+    /* ---------- calculator: rye ---------- */
+    "rye tin loaf · 40% starter · same day": ["raženi hleb u kalupu · 40% kiselog testa · isti dan", "ржаной формовой · закваска 40% · в тот же день"],
+    "rye tin loaf · 20% starter · overnight": ["raženi hleb u kalupu · 20% kiselog testa · preko noći", "ржаной формовой · закваска 20% · ночь в холодильнике"],
+    "rye tin loaf · 70% starter · more sour": ["raženi hleb u kalupu · 70% kiselog testa · kiseliji", "ржаной формовой · закваска 70% · кислее"],
+    "rye flour I have, g": ["raženog brašna imam, g", "ржаной муки есть, г"],
+    "Starter: rye, 100% (equal rye flour and water). The rye inside it is already counted in the recipe.": ["Kiselo testo: raženo, 100% (jednako raženog brašna i vode). Raž u njemu je već uračunata u recept.", "Закваска: ржаная, 100% (ржаная мука и вода поровну). Рожь в ней уже учтена в рецептуре."],
+    "your flour, your tin": ["vaše brašno, vaš kalup", "ваша мука, ваша форма"],
+    "A calculator that rewrites this recipe for you. Pick the version — same day (40% starter), overnight (20%) or more sour (70%) — then type in the flour you have or the dough you want, and it tells you how many grams of everything to weigh.": ["Kalkulator koji prepisuje ovaj recept za vas. Izaberite verziju — isti dan (40% kiselog testa), preko noći (20%) ili kiseliji (70%) — upišite brašno koje imate ili testo koje želite, i dobićete koliko grama svega da izmerite.", "Калькулятор, который пересчитает этот рецепт за вас. Выберите вариант — в тот же день (закваска 40%), на ночь (20%) или кислее (70%), — впишите муку, которая есть, или тесто, которое нужно, и он скажет, сколько граммов чего взвесить."],
+    "All weights are dough. In the oven a loaf loses some water: 1150 g of dough → about 1000 g of bread.": ["Sve težine su testo. U rerni hleb izgubi deo vode: 1150 g testa → oko 1000 g hleba.", "Все веса — это тесто. В духовке хлеб теряет часть воды: 1150 г теста → около 1000 г хлеба."],
+    "The starter is rye, 100%: feed it separately, its flour and water are already counted.": ["Kiselo testo je raženo, 100%: hranite ga odvojeno, njegovo brašno i voda su već uračunati.", "Закваска ржаная, 100%: кормите её отдельно, её мука и вода уже учтены."],
+    "version": ["verzija", "вариант"],
+    "40% starter · same day": ["40% kiselog testa · isti dan", "закваска 40% · в тот же день"],
+    "20% starter · overnight": ["20% kiselog testa · preko noći", "закваска 20% · на ночь"],
+    "70% starter · more sour": ["70% kiselog testa · kiseliji", "закваска 70% · кислее"],
     /* ---------- science: sourdough vs fusarium (wk 44) ---------- */
     "30 oct 2026": ["30. okt 2026", "30 окт. 2026"],
     "science · 30 oct": ["nauka · 30. okt", "наука · 30 окт."],
@@ -891,15 +905,16 @@
     var g = k.match(/^(\d+) g$/i); if (g) return g[1] + (lang === 'ru' ? ' г' : ' g');
     var hit = T[k];
     if (hit) return hit[IDX[lang]];
-    var sp = k.match(/^(\d+)% · (?:(\d+)% whole wheat · )?(\d+)% salt$/);
-    if (sp) { var ru2 = lang === 'ru'; return sp[1] + '% · ' + (sp[2] ? sp[2] + (ru2 ? '% цельнозерновой · ' : '% integralno · ') : '') + sp[3] + (ru2 ? '% соли' : '% so'); }
+    var sp = k.match(/^(\d+)% · (?:(\d+)% rye · )?(?:(\d+)% whole wheat · )?(\d+)% salt$/);
+    if (sp) { var ru2 = lang === 'ru'; return sp[1] + '% · ' + (sp[2] ? sp[2] + (ru2 ? '% ржаной · ' : '% raž · ') : '') + (sp[3] ? sp[3] + (ru2 ? '% цельнозерновой · ' : '% integralno · ') : '') + sp[4] + (ru2 ? '% соли' : '% so'); }
     var m = k.match(/^× 1 of (\d+)$/);
     if (m) return (lang === 'sr' ? '× 1 od ' : '× 1 из ') + m[1];
-    m = k.match(/^hydration (\d+)% · salt (\d+)%(?: · whole wheat (\d+)%)?(?: · prefermented flour ([\d.]+)%)?\. Rounded to the gram — your scale does the same\.$/);
+    m = k.match(/^hydration (\d+)% · salt (\d+)%(?: · rye (\d+)%)?(?: · whole wheat (\d+)%)?(?: · prefermented flour ([\d.]+)%)?\. Rounded to the gram — your scale does the same\.$/);
     if (m) {
       var ru = lang === 'ru', parts = [(ru ? 'гидратация ' : 'hidratacija ') + m[1] + '%', (ru ? 'соль ' : 'so ') + m[2] + '%'];
-      if (m[3]) parts.push((ru ? 'цельнозерновая ' : 'integralno ') + m[3] + '%');
-      if (m[4]) parts.push((ru ? 'сброженная мука ' : 'prefermentisano brašno ') + m[4].replace('.', ',') + '%');
+      if (m[3]) parts.push((ru ? 'ржаная ' : 'raženo ') + m[3] + '%');
+      if (m[4]) parts.push((ru ? 'цельнозерновая ' : 'integralno ') + m[4] + '%');
+      if (m[5]) parts.push((ru ? 'сброженная мука ' : 'prefermentisano brašno ') + m[5].replace('.', ',') + '%');
       return parts.join(' · ') + (ru ? '. Округлено до грамма — как и ваши весы.' : '. Zaokruženo na gram — kao i vaša vaga.');
     }
     return null;

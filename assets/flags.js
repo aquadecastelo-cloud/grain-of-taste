@@ -53,6 +53,12 @@
   document.querySelectorAll('[data-until]').forEach(function (el) {
     if (!isProd || RELEASED[el.getAttribute('data-until')]) el.remove();
   });
+  /* calculator: recipes of unreleased sections are not offered on prod */
+  if (isProd) document.querySelectorAll('select option[data-flag]').forEach(function (o) {
+    if (RELEASED[o.getAttribute('data-flag')]) return;
+    var sel = o.parentNode, was = o.selected; o.remove();
+    if (was && sel.options.length) { sel.selectedIndex = 0; sel.dispatchEvent(new Event('change', { bubbles: true })); }
+  });
   /* keep the home cards numbered 01, 02, 03… after hiding some */
   if (isProd) document.querySelectorAll('.cover-card .no').forEach(function (n, i) { n.textContent = (i < 9 ? '0' : '') + (i + 1); });
 })();
