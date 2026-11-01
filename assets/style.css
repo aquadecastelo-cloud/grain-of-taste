@@ -634,3 +634,24 @@ h2.hand{font-size:clamp(32px,4.2vw,52px)}
 /* home: a card in the page's own colour needs its own edge */
 body.yellow .cover-card.yellow{background:var(--card);box-shadow:0 14px 30px rgba(43,42,38,.12)}
 @media(min-width:601px){.post{grid-template-columns:170px 1fr auto}.post > .caps:first-child{white-space:nowrap}}
+
+/* ---------- recipes index: newest first, the first visible card is the big "latest" one ---------- */
+.rcp-list{display:grid;grid-template-columns:1fr;gap:30px;margin:10px 0 20px}
+.rcp-card{display:grid;grid-template-columns:180px minmax(0,1fr);max-width:820px;gap:26px;align-items:center;background:var(--card);color:var(--ink);padding:26px;box-shadow:0 14px 30px rgba(43,42,38,.12);transition:transform .2s}
+.rcp-card:hover{transform:translateY(-3px)}
+.rcp-card .polaroid{width:100%;margin:0;padding:8px 8px 40px}
+.rcp-card .polaroid .ph{aspect-ratio:4/5}
+.rcp-card .polaroid .cap{font-size:22px;height:40px}
+.rcp-text{display:flex;flex-direction:column;gap:10px;align-items:flex-start}
+.rcp-title{font-family:var(--hook);font-weight:900;font-size:34px;line-height:1;letter-spacing:-.03em}
+.rcp-sub{margin:0;font-family:'Playfair Display',serif;font-style:italic;font-size:18px;line-height:1.45}
+.rcp-tags{display:flex;flex-wrap:wrap;gap:8px}
+.rcp-tags span{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.12em;text-transform:uppercase;border:1.5px solid var(--ink);padding:5px 9px}
+.rcp-new{display:none;background:var(--red);color:var(--paper);font-size:30px;line-height:1;padding:4px 16px 8px;transform:rotate(-2deg);margin-bottom:4px}
+.rcp-card:first-child{max-width:none;grid-template-columns:minmax(0,380px) minmax(0,1fr);gap:48px;padding:36px}
+.rcp-card:first-child .rcp-new{display:inline-block}
+.rcp-card:first-child .rcp-title{font-size:clamp(44px,6vw,72px)}
+.rcp-card:first-child .rcp-sub{font-size:22px}
+.rcp-card:first-child .polaroid{transform:rotate(-2deg);padding:12px 12px 56px}
+.rcp-card:first-child .polaroid .cap{font-size:28px;height:56px}
+@media(max-width:900px){.rcp-list{grid-template-columns:1fr}.rcp-card,.rcp-card:first-child{grid-template-columns:1fr;gap:24px;padding:22px}.rcp-card .polaroid{max-width:320px;justify-self:center}}

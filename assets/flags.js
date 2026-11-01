@@ -49,6 +49,10 @@
   document.querySelectorAll('[data-needs]').forEach(function (el) {
     if (isProd && !RELEASED[el.getAttribute('data-needs')]) el.remove();
   });
+  /* the opposite: <div data-until="rye">…</div> is shown only until that section is out (e.g. the previous "recipe of the week") */
+  document.querySelectorAll('[data-until]').forEach(function (el) {
+    if (!isProd || RELEASED[el.getAttribute('data-until')]) el.remove();
+  });
   /* keep the home cards numbered 01, 02, 03… after hiding some */
   if (isProd) document.querySelectorAll('.cover-card .no').forEach(function (n, i) { n.textContent = (i < 9 ? '0' : '') + (i + 1); });
 })();
